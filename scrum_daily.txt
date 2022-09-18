@@ -13,11 +13,11 @@
 
 2022/09/18 (Ngan)
 1. Done / not done since last scrum:
-- setup the github project repository
-- setup the initial project (client - server)
+	- setup the github project repository
+	- setup the initial project (client - server)
 
 2. To do until next Scrum:
-- design home page layout
+	- design home page layout
 
 3. Need assistance / figure things out
-- find and test a layout with bootstrap library
+	- find and test a layout with bootstrap library
