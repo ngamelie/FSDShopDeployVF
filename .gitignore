@@ -1,1 +1,5 @@
+# Ignore database directory
+database/
 
+# scrum_daily
+scrum_daily.txt
