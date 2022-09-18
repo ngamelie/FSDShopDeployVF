@@ -1,1 +1,23 @@
+2022/09/16 (Jia - Zeen - Ngan)
+1. Done / not done since last scrum:
+	- created project proposal
+	- created database mockup
+	- submitted project proposal
 
+2022/09/16 (Ngan)
+2. To do until next Scrum: 
+	- setup the github project repository
+	- setup the initial project (client - server)
+3. Need assistance / figure things out
+	- Github training
+
+2022/09/18 (Ngan)
+1. Done / not done since last scrum:
+- setup the github project repository
+- setup the initial project (client - server)
+
+2. To do until next Scrum:
+- design home page layout
+
+3. Need assistance / figure things out
+- find and test a layout with bootstrap library
