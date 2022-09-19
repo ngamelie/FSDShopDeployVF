@@ -1,16 +1,20 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
+/**
+ * Create on Sep 8th 
+ * Code by Zeen Wu
+ */
+
+// dependency
+const express = require("express")
+const app = express()
+const config = require('./config/config');
+
+app.listen(config.app.port, () => {
+    console.log("My app run on port 3001.")
+})
 
 
-// From routes/Product.js
-// GET -  localhost:3001/product/ 
-// POST-  localhost:3001/product/ 
+app.use('/login', require('./module/login/login'))
+app.use('/login/user', require('./module/login/user'))
+app.use('/category', require('./module/category'))
+app.use('/admin', require('./module/admin'))
 
- const productRouter = require("./routes/Product");
- 
- app.use("/product", productRouter);
-
-app.listen(3001, () => {
-  console.log("Server running on port 3001");
-});
