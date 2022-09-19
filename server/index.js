@@ -1,6 +1,20 @@
-const express = require("express");
-const app = express();
+/**
+ * Create on Sep 8th 
+ * Code by Zeen Wu
+ */
 
-app.listen(3001, () => {
-  console.log("Server running on port 3001");
-});
+// dependency
+const express = require("express")
+const app = express()
+const config = require('./config/config');
+
+app.listen(config.app.port, () => {
+    console.log("My app run on port 3001.")
+})
+
+
+app.use('/login', require('./module/login/login'))
+app.use('/login/user', require('./module/login/user'))
+app.use('/category', require('./module/category'))
+app.use('/admin', require('./module/admin'))
+
