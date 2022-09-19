@@ -82,13 +82,11 @@
 	
 2022/09/19 (Jia)
 1. Done / not done since last scrum:
-	- project plan
 	- trello
 
 2. To do until next Scrum:
-	- Collect and organize product information
-	- Product module backend CRUD 
-	- Product module frontend CRUD 
+	- User Profile
+	
 3. Need assistance / figure things out
 	- none
 
