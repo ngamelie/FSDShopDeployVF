@@ -72,9 +72,11 @@
 	- Authentication and authorization
 	- route assignment and protect
 	- learn to use scrum and The Agile Software Development
+	- learn how to use github
 
 3. Need assistance / figure things out
 	- How JWT works for nodejs rest api
+	- Github training
 	
 2022/09/19 (Jia)
 1. Done / not done since last scrum:
