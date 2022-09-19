@@ -29,8 +29,6 @@ router.post("/", async(req, res) => {
 
     bcrypt.compare(obj.pword, rs.pword, function(err, result){
         if (result) {
-            //console.log(result)
-            // password is valid
             rsObj.isAuth = 1
             rsObj.user = rs
             res.send(rsObj)

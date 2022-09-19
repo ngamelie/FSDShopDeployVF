@@ -20,6 +20,8 @@ function Login_form(){
     }).then( rs => {
       const obj = rs.data
       if(obj.isAuth == 1) {
+        obj.isAuth = config().auth
+        obj.user.role == 1 ? obj.user.role = config().admin : obj.user.role = config().user
         sessionStorage.setItem("token", JSON.stringify(obj))
         window.location.reload()
       } else {
@@ -35,7 +37,8 @@ function Login_form(){
     
   }
 
-  if( JSON.parse(sessionStorage.getItem("token")) && JSON.parse(sessionStorage.getItem("token")).isAuth == 1) {
+  const objToken = JSON.parse(sessionStorage.getItem("token"))
+  if( objToken && (objToken.isAuth).charAt((objToken.isAuth).length - 1) == "1") {
     return (
       <>
           <div className="form-group">

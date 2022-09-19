@@ -11,10 +11,10 @@ const config = {
     isUser : (req, res, next) => {
 
         const obj = JSON.parse(req.headers.token)
-        if(obj && obj.isAuth == 1){
+        if(obj && (obj.isAuth).charAt((obj.isAuth).length-1) == "1"){
             next()
         } else {
-            res.send("You are not admin.")
+            res.send("You are not a user yet.")
         }
         
     },
@@ -22,10 +22,10 @@ const config = {
     isAdmin : (req, res, next) => {
 
         const obj = JSON.parse(req.headers.token)
-        if(obj && obj.isAuth == 1 && obj.user.role ===1){
+        if(obj && (obj.isAuth).charAt((obj.isAuth).length-1) == "1" && (obj.user.role).charAt((obj.user.role).length-1) == "1"){
             next()
         } else {
-            res.send("You are not admin.")
+            res.send("Access is forbidden.")
         }
         
     }
