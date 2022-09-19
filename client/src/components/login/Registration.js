@@ -24,7 +24,7 @@ function Registration() {
         role: 0,
         pword: pword
       }).then( rs => {
-        setMsg(msg => [...msg, JSON.stringify(rs.data)] )
+        setMsg(msg => [...msg, rs.data] )
       })
     }
   }
