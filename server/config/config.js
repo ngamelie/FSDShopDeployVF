@@ -11,7 +11,6 @@ const config = {
     isUser : (req, res, next) => {
 
         const obj = JSON.parse(req.headers.token)
-        console.log(obj)
         if(obj && obj.isAuth == 1){
             next()
         } else {
@@ -23,7 +22,6 @@ const config = {
     isAdmin : (req, res, next) => {
 
         const obj = JSON.parse(req.headers.token)
-        console.log(obj)
         if(obj && obj.isAuth == 1 && obj.user.role ===1){
             next()
         } else {
