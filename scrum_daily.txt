@@ -86,6 +86,7 @@
 
 2. To do until next Scrum:
 	- User Profile
+	- find a cloud service provider
 	
 3. Need assistance / figure things out
 	- none
