@@ -41,12 +41,12 @@
 
 2022/09/18 (Jia)
 1. Done / not done since last scrum:
-	- project plan
-	- trello
-	- find a cloud service provider
+	- project plan(Done)
+	- Use case diagram(Done)
+	- trello (create workspace https://trello.com/invite/b/ON6PAPY9/3f8f99fc21452b9e27952680608cc0b7/electronic-fsdshop)
+	- find a cloud service provider (do some research on EC2 and Heroku)
 
 2. To do until next Scrum:
-	- project plan
 	- trello
 	- find a cloud service provider
 
@@ -82,13 +82,12 @@
 	
 2022/09/19 (Jia)
 1. Done / not done since last scrum:
-	- project plan
 	- trello
 
 2. To do until next Scrum:
-	- Collect and organize product information
-	- Product module backend CRUD 
-	- Product module frontend CRUD 
+	- User Profile
+	- find a cloud service provider
+	
 3. Need assistance / figure things out
 	- none
 
