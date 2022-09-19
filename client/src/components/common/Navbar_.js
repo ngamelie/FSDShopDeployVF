@@ -1,11 +1,20 @@
-import React, { Component } from "react";
+import React, {useState, useEffect, Component} from "react";
 import { Navbar, Button, Container, NavDropdown, Nav, Form } from 'react-bootstrap';
+import Axios from "axios"
 import Login_form from "./Login_form";
+import config from '../config/Config'
 
 
-class Navbar_ extends Component {
+function Navbar_ () {
+  const PATH = config().path
+  const [catergories, setCatergory] = useState([])
+  useEffect(() => {
+    Axios.get(PATH + "/category").then( rs => {
+      setCatergory(rs.data)
+    })
+    
+  }, [])
 
-  render() {
 
     return (
       <div>
@@ -30,11 +39,10 @@ class Navbar_ extends Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/">Gammers</Nav.Link>
-                <Nav.Link href="/#">Cameras</Nav.Link>
-                <Nav.Link href="/#">Laptops</Nav.Link>
-                <Nav.Link href="/#">TVs</Nav.Link>
-                <Nav.Link href="/#">Headphones</Nav.Link>
+                { catergories.map(category => 
+                  <Nav.Link href="/"> { category.title }</Nav.Link>
+
+                )}
               </Nav>
             </Navbar.Collapse>
             <Login_form />
@@ -47,7 +55,6 @@ class Navbar_ extends Component {
     ); // return close
 
 
-  } // render close
 
 } // class Navbar close
 
