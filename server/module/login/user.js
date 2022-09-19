@@ -1,0 +1,120 @@
+/**
+ * Create on Sep 12th 
+ * Code by Zeen Wu
+ */
+ 
+// dependency
+const express = require("express")
+const router = require('express').Router();
+const bodyParser = require("body-parser")
+const cors = require("cors")
+const bcrypt = require('bcrypt')
+const session = require('express-session');
+// module
+const rep = require ('../../repository/repUser')
+const config = require('../../config/config');
+// app init
+router.use(cors())
+router.use(express.json())
+router.use(cors())
+router.use(session({secret: 'ssshhh'}))
+
+
+// -- new one ---------------------------------------- //
+router.post("/", (req, res) => {
+    const obj = req.body   
+    var bcry = ""
+
+    bcrypt.hash(obj.pword, 10, (err, hash) => {
+        if (err) {
+            console.log(err)
+            return
+        }
+        bcry = hash
+    })
+
+    setTimeout(()=>{
+        try {
+            obj.pword = bcry
+            const rs =  rep.newOne(obj)
+            res.send("New user has been created.")
+        } catch (e) {
+            console.error('error is:', e.message);
+            res.send(e.message)
+        }
+    
+    }, 500);
+
+    
+})
+
+// -- get one By Id ------------------------------------------------ //
+router.get("/:id", async(req, res) => {
+    const id = req.params.id
+    try {
+        const obj = await rep.getOne(id)
+        res.send(obj)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
+const verify = (req, res, next) => {
+
+    console.log(req.headers.token)
+
+    if(req.headers.token && req.headers.token == "true"){
+        next()
+    } else {
+        res.send("You are not admin.")
+    }
+    
+}
+
+
+// -- get all------------------------------------------------ //
+router.get("/", verify, async(req, res) => {
+    try {
+        const obj = await rep.getAll()
+        res.send(obj)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
+// -- delete ------------------------------------------------ //
+router.delete("/del/:id", async(req, res) => {
+    const id = req.params.id
+    try {
+        const rs = await rep.delOne(id)
+        res.send(rs)  
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()  
+    }
+     
+})
+
+
+// -- update ------------------------------------------------ //
+router.put("/update", async(req, res) => {
+    const obj = req.body
+    
+    try {
+        const rs = await rep.updateOne(obj)
+        res.send(rs)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
+
+
+module.exports = router;
+
