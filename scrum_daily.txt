@@ -105,9 +105,11 @@
 
 2022/09/20 (Zeen)
 1. Done / not done since last scrum:
-	- user registration and login
-	- Authentication and authorization
-	- route assignment and protect
+	- user registration and login (testing)
+	- Authentication and authorization (testing)
+	- route assignment and protect (testing)
+	- learn to use scrum and The Agile Software Development (not done)
+	- learn how to use github (not done)
 
 2. To do until next Scrum:
 	- Admin module backend Category CRUD
@@ -116,7 +118,7 @@
 	- web module product search by category 
 
 3. Need assistance / figure things out
-	- none
+	- Github training
 	
 
 	
