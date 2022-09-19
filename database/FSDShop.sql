@@ -28,6 +28,7 @@ CREATE TABLE `category` (
 CREATE TABLE `product` (
   `pid` int AUTO_INCREMENT PRIMARY KEY,
   `cid` smallint not null,
+  `uid` int,
   `pname` varchar(100) not null,
   `price` float,
   `description` varchar(1000),
@@ -70,6 +71,10 @@ ADD CONSTRAINT FK_product_category
 FOREIGN KEY product(cid) REFERENCES category(cid)
 ;
 
+ALTER TABLE product
+ADD CONSTRAINT FK_product_user
+FOREIGN KEY product(uid) REFERENCES user(uid)
+;
 
 ALTER TABLE `order`
 ADD CONSTRAINT FK_order_user
@@ -88,39 +93,13 @@ FOREIGN KEY (oid) REFERENCES `order`(oid)
 ;
 
 ALTER TABLE `review`
-ADD CONSTRAINT FK_product_product
+ADD CONSTRAINT FK_review_product
 FOREIGN KEY (pid) REFERENCES product(pid)
 ;
 
 ALTER TABLE `review`
-ADD CONSTRAINT FK_product_user
+ADD CONSTRAINT FK_review_user
 FOREIGN KEY (uid) REFERENCES `user`(uid)
 ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
