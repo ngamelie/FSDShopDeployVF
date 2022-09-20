@@ -1,5 +1,5 @@
 /**
- * Create on Sep 14th 
+ * Create on Sep 20th 
  * Code by Zeen Wu
  */
 const database = require('../config/db');
@@ -16,13 +16,13 @@ const rep = {
     },
 
     getOne: async function (id){
-        const sql = "select * from " + tbl + " where pid = ?"
+        const sql = "select * from " + tbl + " where iid = ?"
         const [rs] = await db.query(sql, [id])
         return rs[0]
     },
 
     delOne: async function (id){
-        const sql = "delete from " + tbl + " where pid = ?"
+        const sql = "delete from " + tbl + " where iid = ?"
         const [rs] = await db.query(sql,[id])
         return rs
     },
@@ -46,7 +46,7 @@ const rep = {
 
     updateOne: async function (obj){
         const sql = "update " + tbl 
-            + " set cid = ?, pname = ?, price = ?, description = ?, img = ?, rate = ?, where pid = ?"
+            + " set cid = ?, pname = ?, price = ?, description = ?, img = ?, rate = ?, where iid = ?"
            
         const [rs] = await db.query(sql, [
             obj.oid,

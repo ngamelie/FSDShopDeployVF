@@ -1,5 +1,5 @@
 /**
- * Create on Sep 14th 
+ * Create on Sep 16th 
  * Code by Zeen Wu
  */
 const database = require('../config/db');

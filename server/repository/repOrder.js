@@ -1,10 +1,10 @@
 /**
- * Create on Sep 19th 
+ * Create on Sep 20th 
  * Code by Zeen Wu
  */
 const database = require('../config/db');
 const db = database.db
-const tbl = "product"
+const tbl = "order"
 
 const rep = {
 
@@ -16,13 +16,13 @@ const rep = {
     },
 
     getOne: async function (id){
-        const sql = "select * from " + tbl + " where pid = ?"
+        const sql = "select * from " + tbl + " where oid = ?"
         const [rs] = await db.query(sql, [id])
         return rs[0]
     },
 
     delOne: async function (id){
-        const sql = "delete from " + tbl + " where pid = ?"
+        const sql = "delete from " + tbl + " where oid = ?"
         const [rs] = await db.query(sql,[id])
         return rs
     },
@@ -30,14 +30,11 @@ const rep = {
 
     newOne: async function (obj){
         const sql = "insert into " + tbl 
-        + " (cid, pname, price, description, img, rate) values (?, ? ,? ,? ,? ,?)"
+        + " (uid, status, odate) values (?, ? ,?)"
         const [rs] = await db.query(sql, [
-            obj.cid,
-            obj.pname,
-            obj.price,
-            obj.description,
-            obj.img,
-            obj.rate
+            obj.uid,
+            obj.status,
+            obj.odate
         ])
 
         return rs
@@ -45,16 +42,14 @@ const rep = {
 
     updateOne: async function (obj){
         const sql = "update " + tbl 
-            + " set cid = ?, pname = ?, price = ?, description = ?, img = ?, rate = ?, where pid = ?"
+            + " set uid = ?, status = ?, odate = ? where oid = ?"
            
         const [rs] = await db.query(sql, [
-            obj.cid,
-            obj.pname,
-            obj.price,
-            obj.description,
-            obj.img,
-            obj.rate,
-            obj.pid
+            obj.uid,
+            obj.status,
+            obj.odate,
+            obj.oid
+
         ]) 
         return rs
     }
