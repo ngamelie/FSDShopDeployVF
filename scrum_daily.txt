@@ -120,6 +120,19 @@
 3. Need assistance / figure things out
 	- Github training
 	
+2022/09/20 (Ngan)
+1. Done / not done since last scrum:
+	- Testing layout with database 
+	- Product Searching  - Pagination
+
+2. To do until next Scrum:
+	- design login - registration layout
+	- design product detail layout
+	- design checkout layout	
+
+3. Need assistance / figure things out
+	- Redux training
+	
 
 	
 	
