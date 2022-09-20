@@ -17,5 +17,10 @@ app.use('/login', require('./module/login/login'))
 app.use('/login/user', require('./module/login/user'))
 app.use('/category', require('./module/category'))
 app.use('/product', require('./module/product'))
+app.use('/order', require('./module/order'))
+app.use('/item', require('./module/item'))
+app.use('/review', require('./module/review'))
+
+
 app.use('/admin', require('./module/admin'))
 
