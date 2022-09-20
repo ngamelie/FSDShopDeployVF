@@ -42,6 +42,20 @@ router.post("/search", async(req, res) => {
     
 })
 
+// -- getNameSearch------------------------------------------------ //
+router.get("/name/:name", async(req, res) => {
+    const v = req.params.name
+    console.log(v)
+    try {
+        const list = await rep.getNameSearch(v)
+        res.send(list)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
 
 // -- new one ---------------------------------------- //
 router.post("/", config.isUser, (req, res) => {

@@ -22,6 +22,13 @@ const rep = {
         return rs
     },
 
+    getNameSearch: async function (value){
+        const sql = "select * from " + tbl + " where pname like ?;"
+        let v = "%" + value + "%"
+        const [rs] = await db.query(sql, v)
+        return rs
+    },
+
     getOne: async function (id){
         const sql = "select * from " + tbl + " where pid = ?"
         const [rs] = await db.query(sql, [id])
