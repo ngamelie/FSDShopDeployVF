@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className="homecontainer">
       <div className="banner">
-        <img src={require("../../asset/images/home.jpg")} />
+        <img src={require("../../asset/images/home.jpg")}  />
       </div>
       <div className="container container-fluid">
         <section id="products" className="container mt-5">
