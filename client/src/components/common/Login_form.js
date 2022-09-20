@@ -1,11 +1,11 @@
-import React, {useState, useEffect, Component} from "react";
-import { Button, Card, Alert, Nav, variant, Col, Form, Row} from 'react-bootstrap';
-import { Route, Routes, Link, Redirect, BrowserRouter, Navigate } from 'react-router-dom';
-import validator from 'validator';
+import React, {useState, useEffect, Component} from "react"
+import { Button, Card, Alert, Nav, variant, Col, Form, Row} from 'react-bootstrap'
+import { Route, Routes, Link, Redirect, BrowserRouter, Navigate } from 'react-router-dom'
+import validator from 'validator'
 import Axios from "axios";
 
-import '../../asset/common/Style.css';
-import config from '../config/Config';
+import '../../asset/common/Style.css'
+import config from '../config/Config'
 
 function Login_form(){
 

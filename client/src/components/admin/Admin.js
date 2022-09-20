@@ -1,10 +1,10 @@
-import React, {useState, useEffect, Component} from "react";
-import { Navbar, Button, Container, Row, Nav, Image } from 'react-bootstrap';
-import Navbar_ from '../common/Navbar_'
-import Footer from '../common/Footer'
-import ErrPage from "../../components/common/ErrPage";
+import React, {useState, useEffect, Component} from "react"
+// import { Navbar, Button, Container, Row, Nav, Image } from 'react-bootstrap';
+// import Navbar_ from '../common/Navbar_'
+// import Footer from '../common/Footer'
+import ErrPage from "../../components/common/ErrPage"
 
-import Axios from "axios"
+import Axios from 'axios'
 import '../../asset/common/Style.css'
 import config from '../config/Config'
 
