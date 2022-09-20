@@ -114,9 +114,10 @@
 2. To do until next Scrum:
 	- Admin module backend Category CRUD
 	- Admin module backend Product CRUD
-	- Common module frontend Category list Navbar
-	- web module product search by category
-	- user module backend order CRUD
+	- product search by category
+	- backend order CRUD
+	- backend order_itme CRUD
+	- backend review CRUD
 
 3. Need assistance / figure things out
 	- Github training
