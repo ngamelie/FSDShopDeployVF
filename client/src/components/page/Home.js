@@ -34,7 +34,7 @@ function Home() {
                <span id="no_of_reviews">(5 Reviews)</span>
               </div>
                   <p className="card-text">$45.67</p>
-                  <a href="#" id="view_btn" className="btn btn-block">
+                  <a href="product/1" id="view_btn" className="btn btn-block">
                     View Details
                   </a>
                 </div>
