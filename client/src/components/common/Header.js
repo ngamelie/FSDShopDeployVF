@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap";
 import "../../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+
 
 function Header() {
   return (
@@ -11,10 +14,9 @@ function Header() {
       <nav className="navbar row">
         <div className="col-12 col-md-3">
           <div className="navbar-brand mx-3">
-            <img src="./images/logo2.png" className="img-fluid logo" />
+            <Link to="/"><img src="./images/logo2.png" className="img-fluid logo" /></Link>            
           </div>
         </div>
-
         <div className="col-12 col-md-6 mt-2 mt-md-0">
           <div className="input-group">
             <input
@@ -32,7 +34,7 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
-          <button className="btn" id="login_btn">Login</button>
+          <Link to="/login" className="btn" id="login_btn">Login</Link>
           <span id="cart" className="ml-3">Cart</span>
           <span className="ml-1" id="cart_count">0</span>
         </div>
