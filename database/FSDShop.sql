@@ -30,7 +30,7 @@ CREATE TABLE `product` (
   `cid` smallint not null,
   `uid` int,
   `pname` varchar(100) not null,
-  `price` float,
+  `price` decimal(15,2),
   `description` varchar(1000),
   `img` varchar(100),
   `rate` smallint
@@ -51,7 +51,7 @@ CREATE TABLE `order_item` (
   `pid` int NOT NULL,
   `quantity` smallint not null,
   `pname` smallint not null,
-  `price` float,
+  `price` decimal(15,2),
   `description` varchar(1000),
   `img` varchar(100)
 )
