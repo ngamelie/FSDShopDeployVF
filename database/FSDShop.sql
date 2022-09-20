@@ -25,19 +25,11 @@ CREATE TABLE `category` (
 )
 ;
 
-CREATE TABLE `seller` (
-  `sid` int AUTO_INCREMENT PRIMARY KEY,
-  `pid` varchar(100) unique,
-  `sname` varchar(100) not null,
-  `description` varchar(1000)
-)
-;
-
 CREATE TABLE `product` (
   `pid` int AUTO_INCREMENT PRIMARY KEY,
   `cid` smallint not null,
-  `sid` int not null,
-  `pname` smallint not null,
+  `uid` int,
+  `pname` varchar(100) not null,
   `price` float,
   `description` varchar(1000),
   `img` varchar(100),
@@ -53,11 +45,10 @@ CREATE TABLE `order` (
 )
 ;
 
-CREATE TABLE `item` (
+CREATE TABLE `order_item` (
   `iid` int primary key AUTO_INCREMENT,
   `oid` int NOT NULL,
   `pid` int NOT NULL,
-  `sid` int not null,
   `quantity` smallint not null,
   `pname` smallint not null,
   `price` float,
@@ -81,8 +72,8 @@ FOREIGN KEY product(cid) REFERENCES category(cid)
 ;
 
 ALTER TABLE product
-ADD CONSTRAINT FK_product_seller
-FOREIGN KEY (sid) REFERENCES seller(sid)
+ADD CONSTRAINT FK_product_user
+FOREIGN KEY product(uid) REFERENCES user(uid)
 ;
 
 ALTER TABLE `order`
@@ -90,55 +81,25 @@ ADD CONSTRAINT FK_order_user
 FOREIGN KEY (uid) REFERENCES user(uid)
 ;
 
-ALTER TABLE `item`
-ADD CONSTRAINT FK_item_seller
-FOREIGN KEY (sid) REFERENCES `seller`(sid)
-;
 
-ALTER TABLE `item`
+ALTER TABLE `order_item`
 ADD CONSTRAINT FK_item_product
 FOREIGN KEY (pid) REFERENCES `product`(pid)
 ;
 
-ALTER TABLE `item`
+ALTER TABLE `order_item`
 ADD CONSTRAINT FK_item_order
 FOREIGN KEY (oid) REFERENCES `order`(oid)
 ;
 
 ALTER TABLE `review`
-ADD CONSTRAINT FK_product_product
+ADD CONSTRAINT FK_review_product
 FOREIGN KEY (pid) REFERENCES product(pid)
 ;
 
 ALTER TABLE `review`
-ADD CONSTRAINT FK_product_user
+ADD CONSTRAINT FK_review_user
 FOREIGN KEY (uid) REFERENCES `user`(uid)
 ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

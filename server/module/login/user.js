@@ -20,6 +20,7 @@ router.use(cors())
 router.use(session({secret: 'ssshhh'}))
 
 
+
 // -- new one ---------------------------------------- //
 router.post("/", (req, res) => {
     const obj = req.body   
@@ -49,7 +50,7 @@ router.post("/", (req, res) => {
 })
 
 // -- get one By Id ------------------------------------------------ //
-router.get("/:id", async(req, res) => {
+router.get("/:id", config.isUser, async(req, res) => {
     const id = req.params.id
     try {
         const obj = await rep.getOne(id)
@@ -61,21 +62,8 @@ router.get("/:id", async(req, res) => {
     
 })
 
-const verify = (req, res, next) => {
-
-    console.log(req.headers.token)
-
-    if(req.headers.token && req.headers.token == "true"){
-        next()
-    } else {
-        res.send("You are not admin.")
-    }
-    
-}
-
-
 // -- get all------------------------------------------------ //
-router.get("/", verify, async(req, res) => {
+router.get("/", config.isAdmin, async(req, res) => {
     try {
         const obj = await rep.getAll()
         res.send(obj)
@@ -87,7 +75,7 @@ router.get("/", verify, async(req, res) => {
 })
 
 // -- delete ------------------------------------------------ //
-router.delete("/del/:id", async(req, res) => {
+router.delete("/del/:id", config.isAdmin, async(req, res) => {
     const id = req.params.id
     try {
         const rs = await rep.delOne(id)
@@ -101,7 +89,7 @@ router.delete("/del/:id", async(req, res) => {
 
 
 // -- update ------------------------------------------------ //
-router.put("/update", async(req, res) => {
+router.put("/update", config.isUser, async(req, res) => {
     const obj = req.body
     
     try {
