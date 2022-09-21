@@ -35,7 +35,6 @@ const rep = {
         return rs
     },
 
-
     newOne: async function (obj){
         const sql = "insert into " + tbl 
         + " (uemail, role, pword) values (?, ?, ?)"

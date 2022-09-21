@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // used to call API
+import Axios from "axios"; // used to call API
 import { Link } from "react-router-dom";
 
 import StarRatings from "react-star-ratings";
@@ -16,66 +16,95 @@ const PATH = config().path
 function Home(props) {
   const [productList, setProductList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [catergories, setCatergory] = useState([])
   const [rsLength, setRsLength] = useState(0);
+  
   const url = window.location.href
   const key = url.split("/")[url.split("/").length - 1]
 
   useEffect(() => {
     if(url.includes("product/name")){
-      axios.get(PATH + "/product/namenum/" + key).then((response) => {
-        setRsLength(response.data.length)
-        });
+      Axios.get(PATH + "/product/namenum/" + key).then((response) => {
+      setRsLength(response.data.length)
+      });
 
-      axios.get(PATH + "/product/name/" + key + "_/_1").then((response) => {
+      Axios.get(PATH + "/product/name/" + "___1").then((response) => {
+      setProductList(response.data);
+      });
+
+    } 
+    
+    
+    else if(url.includes("product/category")){
+      Axios.get(PATH + "/product/category/" + key).then((response) => {
         setProductList(response.data);
-        });
-
-    } else {
+      });
+    } 
+    
+    
+    else {
       // change here after
-      axios.get(PATH + "/product").then((response) => {
+      Axios.get(PATH + "/product").then((response) => {
         setRsLength(response.data.length);
       });
 
-      axios.get(PATH + "/product/page/1").then((response) => {
+      Axios.get(PATH + "/product/page/1").then((response) => {
         setProductList(response.data);
       });
     }
 
+    Axios.get(PATH + "/category").then( rs => {
+      setCatergory(rs.data)
+    })
+
   }, []);
-
-
 
   function setCurrentpageNo(pageNumber) {
     setCurrentPage(pageNumber)
       if(url.includes("product/name")){
-        axios.get(PATH + "/product/namenum/" + key).then((response) => {
+        Axios.get(PATH + "/product/namenum/" + key).then((response) => {
           setRsLength(response.data.length)
           });
   
-        axios.get(PATH + "/product/name/" + key + "_/_" + pageNumber).then((response) => {
+        Axios.get(PATH + "/product/name/" + key + "___" + pageNumber).then((response) => {
           setProductList(response.data);
           });
 
-      } else {
+      } 
+      
+      else if(url.includes("product/category")){
+          Axios.get(PATH + "/product/category/" + key).then((response) => {
+            setProductList(response.data);
+          });
+      } 
+      
+      
+      else {
         // change here after
-        axios.get(PATH + "/product").then((response) => {
+        Axios.get(PATH + "/product").then((response) => {
           setRsLength(response.data.length);
         });
   
-        axios.get(PATH + "/product/page/" + pageNumber).then((response) => {
+        Axios.get(PATH + "/product/page/" + pageNumber).then((response) => {
           setProductList(response.data);
           });
       }
   }
 
-
   return (
-    <div className="homecontainer-fluid row">
+    <div className="homecontainer row">
 
 
       <div className="col-2">
         <br /><br />
           <h5>Electronics</h5>
+
+            { catergories.map(category => (
+              <div>
+                <a href={`/product/category/${category.cid}`}> { category.title } </a> <br/>
+              </div>
+            ))}
+
       </div>
 
       <div className="col-10">

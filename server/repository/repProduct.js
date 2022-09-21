@@ -43,6 +43,12 @@ const rep = {
         return rs
     },
 
+    getByCategory: async function (cid){
+        const sql = "select * from " + tbl + " where cid = ?"
+        const [rs] = await db.query(sql, cid)
+        return rs
+    },
+
     getOne: async function (id){
         const sql = "select * from " + tbl + " where pid = ?"
         const [rs] = await db.query(sql, [id])

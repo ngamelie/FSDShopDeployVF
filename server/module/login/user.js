@@ -26,6 +26,11 @@ router.post("/", (req, res) => {
     const obj = req.body   
     var bcry = ""
 
+    if(rep.getOneByEmail(req.body.uemail)){
+        res.send("Your email has already registe.")
+        return
+    }
+
     bcrypt.hash(obj.pword, 10, (err, hash) => {
         if (err) {
             console.log(err)
