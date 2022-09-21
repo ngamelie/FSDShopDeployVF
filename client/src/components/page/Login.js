@@ -40,9 +40,10 @@ function Login() {
           ? (obj.user.role = config().admin)
           : (obj.user.role = config().user);
         sessionStorage.setItem("token", JSON.stringify(obj));
+        alert("Welcome.");
         window.location.reload();
       } else {
-        alert("Incorrect username or password。");
+        alert("Incorrect username or password.");
       }
     });
   };
@@ -78,10 +79,10 @@ function Login() {
                   <label for="email_field">Email</label>
                   <input
                     type="email"
-                    name="uname"
+                    name="uemail"
                     size="20"
                     maxLength="30"
-                    id="email_field"
+                    id="uemail"
                     className="form-control"
                     placeholder="Enter email"
                     onChange={(e) => {
@@ -97,7 +98,7 @@ function Login() {
                     name="pword"
                     size="20"
                     maxLength="6"
-                    id="password_field"
+                    id="pword"
                     className="form-control"
                     placeholder="Password"
                     onChange={(e) => {

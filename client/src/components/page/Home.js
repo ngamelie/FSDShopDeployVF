@@ -3,6 +3,7 @@ import axios from "axios"; // used to call API
 import { Link } from "react-router-dom";
 
 import StarRatings from "react-star-ratings";
+import Pagination from "react-js-pagination";
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,20 +13,24 @@ import { Navbar, Button, Container, Row, Nav, Image } from "react-bootstrap";
 
 function Home() {
   const [productList, setProductList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     axios.get("http://localhost:3001/product/").then((response) => {
       setProductList(response.data);
-      console.log(response.data);
+      //console.log(response.data);
     });
   }, []);
 
+  function setCurrentpageNo(pageNumber) {
+    setCurrentPage(pageNumber)
+  }
 
 
   return (
     <div className="homecontainer">
       <div className="banner">
-        <img src={require("../../asset/images/home.jpg")} />
+        <img src={require("../../asset/images/home.jpg")}  />
       </div>
       <div className="container container-fluid">
         <section id="products" className="container mt-5">
@@ -59,6 +64,20 @@ function Home() {
             ))}
           </div>
         </section>
+        <div className="d-flex justify-content-center mt-5">
+          <Pagination 
+            activePage = {currentPage}
+            itemsCountPerPage = {4}
+            totalItemsCount = {10}
+            onChange = {setCurrentpageNo}
+            nextPageText = {"Next"}
+            prevPageText = {"Prev"}
+            firstPageText = {"First"}
+            lastPageText = {"Last"}
+            itemClass = "page-item"
+            linkClass= "page-link"
+          />
+        </div>
       </div>
     </div>
   );
