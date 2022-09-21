@@ -1,10 +1,32 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // used to call API
+import { Link } from "react-router-dom";
+
+import StarRatings from "react-star-ratings";
+import Pagination from "react-js-pagination";
+
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import { Navbar, Button, Container, Row, Nav, Image } from "react-bootstrap";
 
 function Home() {
+  const [productList, setProductList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/product/").then((response) => {
+      setProductList(response.data);
+      //console.log(response.data);
+    });
+  }, []);
+
+  function setCurrentpageNo(pageNumber) {
+    setCurrentPage(pageNumber)
+  }
+
+
   return (
     <div className="homecontainer">
       <div className="banner">
@@ -13,61 +35,49 @@ function Home() {
       <div className="container container-fluid">
         <section id="products" className="container mt-5">
           <div className="row">
-            <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-              <div className="card p-3 rounded">
-                <img
-                  className="card-img-top mx-auto"
-                  src="https://m.media-amazon.com/images/I/617NtexaW2L._AC_UY218_.jpg"
-                />
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">
-                    <a href="">
-                      128GB Solid Storage Memory card - SanDisk Ultra
-                    </a>
-                  </h5>
-                  <div class="ratings mt-auto">
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={farStar} />
-                <FontAwesomeIcon icon={farStar} />
-               <span id="no_of_reviews">(5 Reviews)</span>
-              </div>
-                  <p className="card-text">$45.67</p>
-                  <a href="product/1" id="view_btn" className="btn btn-block">
-                    View Details
-                  </a>
+            {productList.map((item, key) => (
+              <div className="col-sm-12 col-md-6 col-lg-3 my-3" >
+                <div className="card p-3 rounded" key={item.id}>
+                  <img
+                    className="card-img-top mx-auto"
+                    src={require(`../../asset/images/${item.img}.jpg`)}
+                  />
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title">
+                      <Link to={`/product/${item.id}`}>{item.description}</Link>
+                    </h5>
+                    <StarRatings
+                      rating={item.rate}
+                      numberOfStars={5}
+                      starRatedColor="#febd69"
+                      starDimension={20} 
+                      starSpacing={1}                                    
+                    />
+                    <p className="card-text mt-3">${item.price}</p>
+                    
+                  </div>
+                  <div className="btnview">
+                    <Link to={`/product/${item.id}`}><span id="view_btn">View Details</span></Link>                    
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-3 my-3">
-          <div class="card p-3 rounded">
-            <img
-              class="card-img-top mx-auto"
-              src="https://m.media-amazon.com/images/I/61B04f0ALWL._AC_UY218_.jpg"
-            />
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">
-                <a href=""
-                  >Wyze Cam 1080p HD Indoor Wireless Smart Home Camera Wyze Cam 1080p HD Indoor Wireless Smart Home Camera</a
-                >
-              </h5>
-              <div class="ratings mt-auto">
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={farStar} />
-               <span id="no_of_reviews">(5 Reviews)</span>
-              </div>
-              <p class="card-text">$965.67</p>
-              <a href="#" id="view_btn" class="btn btn-block">View Details</a>
-            </div>
-          </div>
-        </div>
+            ))}
           </div>
         </section>
+        <div className="d-flex justify-content-center mt-5">
+          <Pagination 
+            activePage = {currentPage}
+            itemsCountPerPage = {4}
+            totalItemsCount = {10}
+            onChange = {setCurrentpageNo}
+            nextPageText = {"Next"}
+            prevPageText = {"Prev"}
+            firstPageText = {"First"}
+            lastPageText = {"Last"}
+            itemClass = "page-item"
+            linkClass= "page-link"
+          />
+        </div>
       </div>
     </div>
   );
