@@ -96,8 +96,10 @@
 	- design home page layout
 
 2. To do until next Scrum:
-	- Testing layout with database 
-	- Product Searching  - Pagination	
+	- design login - registration page
+	- design product detail page
+	- Testing product with front end and postmal 
+	- Product Pagination 	
 
 3. Need assistance / figure things out
 	- Github training
@@ -137,5 +139,19 @@
 	- Redux training
   
   =============================================================
+  
+  2022/09/21 (Ngan)
+1. Done / not done since last scrum:
+	- design checkout page
+	- design admin page
+	- Product Pagination 
+
+2. To do until next Scrum:
+	- test admin page with database
+	- test checkout
+		
+
+3. Need assistance / figure things out
+	- deployment training
 
 	
