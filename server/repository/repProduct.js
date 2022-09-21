@@ -8,9 +8,16 @@ const tbl = "product"
 
 const rep = {
 
-    getAll: async function (){
+    getAll: async function (from, n){
         const sql = "select * from " + tbl
-        const [rs] = await db.query(sql)
+        const [rs] = await db.query(sql, [from, n])
+        return rs
+
+    },
+
+    getPageAll: async function (from, n){
+        const sql = "select * from " + tbl + " limit ?, ?" 
+        const [rs] = await db.query(sql, [from, n])
         return rs
 
     },
@@ -22,9 +29,16 @@ const rep = {
         return rs
     },
 
-    getNameSearch: async function (value){
-        const sql = "select * from " + tbl + " where pname like ?;"
-        let v = "%" + value + "%"
+    getNameSearch: async function (key, from, num){
+        const sql = "select * from " + tbl + " where pname like ? limit ? , ? ;"
+        let v = "%" + key + "%"
+        const [rs] = await db.query(sql, [v, from, num])
+        return rs
+    },
+
+    getNameSearchNum: async function (key){
+        const sql = "select * from " + tbl + " where pname like ?"
+        let v = "%" + key + "%"
         const [rs] = await db.query(sql, v)
         return rs
     },

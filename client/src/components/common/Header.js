@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect, Component} from "react";
 import { Link } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap";
@@ -6,9 +6,9 @@ import "../../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-
-
 function Header() {
+  const [keyWord, setKeyWord] = useState("");
+
   return (
     <div>
       <nav className="navbar row">
@@ -23,12 +23,13 @@ function Header() {
               type="text"
               id="search_field"
               className="form-control"
-              placeholder="Enter Product Name ..."
+              placeholder="Enter Product Name ..." 
+              onChange={(e)=>{
+                setKeyWord(e.target.value)
+              }}
             />
             <div className="input-group-append">
-              <button id="search_btn" className="btn">
-                <FontAwesomeIcon icon={faSearch} />
-              </button>
+            <a id="search_btn" className="btn" href={ keyWord.trim() == "" ? '/' : `/product/name/${keyWord}` }><FontAwesomeIcon icon={faSearch} /></a>  
             </div>
           </div>
         </div>

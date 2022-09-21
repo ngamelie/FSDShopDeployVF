@@ -10,8 +10,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import { Navbar, Button, Container, Row, Nav, Image } from "react-bootstrap";
+import config from '../config/Config'
+const PATH = config().path
 
-function Home() {
+function Home(props) {
   const [productList, setProductList] = useState([]);
   
   useEffect(() => {
@@ -51,7 +53,7 @@ function Home() {
                     
                   </div>
                   <div className="btnview">
-                    <Link to={`/product/${item.pid}`}><span id="view_btn">View Details</span></Link>                    
+                    <Link to={`/product/${item.ppid}`}><span id="view_btn">View Details</span></Link>                    
                   </div>
                 </div>
               </div>
@@ -62,7 +64,7 @@ function Home() {
           <Pagination 
             activePage = {currentPage}
             itemsCountPerPage = {4}
-            totalItemsCount = {10}
+            totalItemsCount = {rsLength}
             onChange = {setCurrentpageNo}
             nextPageText = {"Next"}
             prevPageText = {"Prev"}
