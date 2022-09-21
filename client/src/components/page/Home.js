@@ -15,13 +15,59 @@ const PATH = config().path
 
 function Home(props) {
   const [productList, setProductList] = useState([]);
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rsLength, setRsLength] = useState(0);
+  const url = window.location.href
+  const key = url.split("/")[url.split("/").length - 1]
+
   useEffect(() => {
-    axios.get("http://localhost:3001/product/").then((response) => {
-      setProductList(response.data);
-      console.log(response.data);
-    });
+    if(url.includes("product/name")){
+      axios.get(PATH + "/product/namenum/" + key).then((response) => {
+        setRsLength(response.data.length)
+        });
+
+      axios.get(PATH + "/product/name/" + key + "_1").then((response) => {
+        setProductList(response.data);
+        });
+
+    } else {
+      // change here after
+      axios.get(PATH + "/product").then((response) => {
+        setRsLength(response.data.length);
+      });
+
+      axios.get(PATH + "/product/page/1").then((response) => {
+        setProductList(response.data);
+      });
+    }
+
   }, []);
+
+
+
+  function setCurrentpageNo(pageNumber) {
+    setCurrentPage(pageNumber)
+      if(url.includes("product/name")){
+        axios.get(PATH + "/product/namenum/" + key).then((response) => {
+          setRsLength(response.data.length)
+          });
+  
+        axios.get(PATH + "/product/name/" + key + "_" + pageNumber).then((response) => {
+          setProductList(response.data);
+          });
+
+      } else {
+        // change here after
+        axios.get(PATH + "/product").then((response) => {
+          setRsLength(response.data.length);
+        });
+  
+        axios.get(PATH + "/product/page/" + pageNumber).then((response) => {
+          setProductList(response.data);
+          });
+      }
+  }
+
 
   return (
     <div className="homecontainer">
@@ -40,7 +86,7 @@ function Home(props) {
                   />
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title">
-                      <Link to={`/product/${item.pid}`}>{item.description}</Link>
+                      <Link to={`/product/${item.id}`}>{item.description}</Link>
                     </h5>
                     <StarRatings
                       rating={item.rate}
@@ -53,14 +99,14 @@ function Home(props) {
                     
                   </div>
                   <div className="btnview">
-                    <Link to={`/product/${item.ppid}`}><span id="view_btn">View Details</span></Link>                    
+                    <Link to={`/product/${item.pid}`}><span id="view_btn">View Details</span></Link>                    
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </section>
-        {/* <div className="d-flex justify-content-center mt-5">
+        <div className="d-flex justify-content-center mt-5">
           <Pagination 
             activePage = {currentPage}
             itemsCountPerPage = {4}
@@ -73,7 +119,7 @@ function Home(props) {
             itemClass = "page-item"
             linkClass= "page-link"
           />
-        </div> */}
+        </div>
       </div>
     </div>
   );

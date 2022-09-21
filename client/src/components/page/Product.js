@@ -1,141 +1,123 @@
-import React, { useState, useEffect } from "react";
-import { Button, Card, Alert, Nav, variant } from "react-bootstrap";
-import { useParams, useNavigate } from "react-router-dom";
-import StarRatings from "react-star-ratings";
+import React, {useState, useEffect, Component} from "react";
+import { Button, Card, Alert, Nav, variant } from 'react-bootstrap';
+import validator from 'validator';
+import Axios from "axios"
+import '../../asset/common/Style.css'
+import config from '../config/Config'
+const PATH = config().path + "/product"
 
-import validator from "validator";
-import Axios from "axios";
-import "../../asset/common/Style.css";
-import config from "../config/Config";
-const PATH = config().path + "/product";
+function Product(props)  {
 
-function Product() {
-  let { id } = useParams();
+  const [product, setProduct] = useState([])
+  const [quantity, setQuantity] = useState(0)
+  const [msg, setMsg] = useState("")
 
-  const [product, setProduct] = useState({});
-
-  const [quantity, setQuantity] = useState(0);
-  const [msg, setMsg] = useState("");
-
-  //const pid = 1  // props.pid
-  const uid = 1; // get uid from token
+  const pid = 2  // props.pid
+  const uid = 1   // get uid from token
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/product/${id}`).then((rs) => {
-      //console.log(rs.data.pid);
-      setProduct(rs.data);
-    });
-  }, []);
+    Axios.get(PATH + "/" + pid)
+    .then( rs => {
+      setProduct(rs.data)
+      
+    })
+    
+  }, [])
 
   const btn_addtocart = () => {
-    if (!isVerified()) return;
+    if (!isVerified()) 
+      return
 
     const emptyCart = {
-      uid: uid,
-      items: [],
-    };
-
-    const currentItem = {
-      quantity: quantity,
-      product: product,
-    };
-
-    if (localStorage.getItem("mycart")) {
-      const myCart = JSON.parse(localStorage.getItem("mycart"));
-      var isInMyCart = false;
-      myCart.items.forEach((item) => {
-        if (item.product.pid == product.pid) {
-          item.quantity = parseInt(item.quantity) + parseInt(quantity);
-          isInMyCart = true;
-        }
-      });
-
-      if (!isInMyCart) myCart.items.push(currentItem);
-      localStorage.setItem("mycart", JSON.stringify(myCart));
-    } else {
-      emptyCart.items.push(currentItem);
-      localStorage.setItem("mycart", JSON.stringify(emptyCart));
+      "uid" : uid,
+      "items" : []
     }
 
-    setMsg("Product add to cart.");
-  };
+    const currentItem = 
+      {
+        "quantity" : quantity,
+        "product" : product
+      }
+    
+    if(localStorage.getItem("mycart")) {
+      const myCart = JSON.parse(localStorage.getItem("mycart"))
+      var isInMyCart = false
+      myCart.items.forEach((item)=>{
+        if(item.product.pid == product.pid){
+          item.quantity = parseInt(item.quantity) + parseInt(quantity)
+          isInMyCart = true
+        }
+      })
+
+      if(!isInMyCart)
+        myCart.items.push(currentItem)
+      localStorage.setItem("mycart", JSON.stringify(myCart))
+    } else {
+      emptyCart.items.push(currentItem)
+      localStorage.setItem("mycart", JSON.stringify(emptyCart))
+    }
+     
+    setMsg("Product add to cart.")
+  }
 
   function isVerified() {
-    setMsg("");
-    var rs = true;
+    setMsg("")
+    var rs = true
     if (quantity == "" || quantity == null || quantity <= 0) {
-      setMsg((msg) => [...msg, "Enter quantity please.  "]);
-      rs = false;
+      setMsg(msg => [...msg, "Enter quantity please.  "])
+      rs = false
     }
-
+    
     if (quantity > 10) {
-      setMsg((msg) => [...msg, "The maximum quantity not more than 10.  "]);
-      rs = false;
+      setMsg(msg => [...msg, "The maximum quantity not more than 10.  "])
+      rs = false
     }
-    var qty = parseInt(quantity);
+    var qty = parseInt(quantity)
     if (!Number.isInteger(qty)) {
-      setMsg((msg) => [...msg, "Quantity should be a number.  "]);
-      rs = false;
+      setMsg(msg => [...msg, "Quantity should be a number.  "])
+      rs = false
     }
 
-    return rs;
+    return rs
   }
 
   return (
-    <>
-      <div class="container container-fluid">
-        <div class="row f-flex justify-content-around">
-          <div class="col-12 col-lg-5 img-fluid" id="product_image">
-            <img
-              src={process.env.PUBLIC_URL + `/images/${product.img}.jpg`}
-              alt="img product"
-              height="450"
-              width="450"
-            />
-          </div>
-          <div class="col-12 col-lg-5 mt-5">
-            <h3>{product.pname}</h3>
-            <p id="product_id">Product # {product.pid}</p>
-            <hr />
-            <StarRatings
-              rating={product.rate}
-              numberOfStars={5}
-              starRatedColor="#febd69"
-              starDimension={20}
-              starSpacing={1}
-            />
-            <hr />
+    < >
 
-            <p id="product_price">${product.price}</p>
-            <div class="stockCounter d-inline">
-              <span class="btn btn-danger minus">-</span>
-              <input
-                type="number"
-                class="form-control count d-inline"
-                value="1"
-                readOnly
-              />
-              <span class="btn btn-primary plus">+</span>
-            </div>
-            <button
-              type="button"
-              id="cart_btn"
-              class="btn btn-primary d-inline ml-4"
-            >
-              Add to Cart
-            </button>
-            <hr />
-            <h4 class="mt-2">Description:</h4>
-            <p>{product.description}</p>
-            <hr />
-            <p id="product_seller mb-3">
-              Sold by: <strong>Amazon</strong>
-            </p>
-          </div>
-        </div>
+      <div className="row">
+      <Card style={{ width: '18rem' }} className="col-4" >
+        <Card.Img variant="top" src={require("../../asset/images/product/comuter01.jpg")} />
+        <Card.Body>
+        <Card.Title>Product ID: { product.pid }</Card.Title>
+        <Card.Title>{ product.pname }</Card.Title>
+        <Card.Title>Current Price: ${ product.price }</Card.Title>
+        </Card.Body>
+      </Card>
+
+      <Card.Text className="col-4">
+      <Card.Title> Product rate: { product.rate }</Card.Title>
+      <br/> { product.description } <br/>
+      </Card.Text>
       </div>
-    </>
+      <br />
+
+      <div className="box">
+        <div className="form-group">
+          <input className="form-control" placeholder="Enter quantity" type="number" name="quantity" onChange={(e)=>{
+            setQuantity(e.target.value)
+          }}/><br/>
+        </div>
+
+
+        <Button variant="success" onClick = { btn_addtocart } > Add to Cart </Button> &nbsp;<br /><br />
+        
+          { msg ? <Alert> {msg} </Alert> : null }
+        
+      </div>
+
+    </ >
   );
 }
+
 
 export default Product;
