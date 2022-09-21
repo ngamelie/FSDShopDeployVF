@@ -7,8 +7,6 @@ import Home from "./components/page/Home";
 import Login from "./components/page/Login";
 import Registration from "./components/page/Registration";
 import Product from "./components/page/Product";
-import Cart from "./components/page/Cart";
-import Checkout from "./components/page/Checkout";
 
 function App() {
   return (
@@ -23,7 +21,7 @@ function App() {
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/product/:id" exact element={<Product />} />
           <Route path="/product/name/:name" exact element={<Home />} />
-          <Route path="/product/:id/:uid" exact element={<Checkout />} />
+          <Route path="/product/category/:cid" exact element={<Home />} />
         </Routes>
         <Footer />
       </Router>

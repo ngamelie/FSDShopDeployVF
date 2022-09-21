@@ -121,7 +121,7 @@ function Registration() {
               <div className="regisbtn">
                 <button
                   id="register_button"
-                  type="submit"
+                  type="button"
                   class="btn btnregister"
                   onClick={btn_new}
                 >

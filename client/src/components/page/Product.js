@@ -13,9 +13,10 @@ const PATH = config().path + "/product";
 function Product(props) {
   
   let { id } = useParams();
-  const [product, setProduct] = useState([]);
-  const [quantity, setQuantity] = useState(0);
-  const [msg, setMsg] = useState("");
+  const [product, setProduct] = useState([])
+  //const [quantity, setQuantity] = useState(0)
+  const quantity = 1
+  const [msg, setMsg] = useState("")
 
   //const pid = 2  // props.pid
   const uid = 1; // get uid from token
@@ -36,47 +37,50 @@ function Product(props) {
     };
 
     const currentItem = {
-      quantity: quantity,
-      product: product,
-    };
-
-    if (localStorage.getItem("mycart")) {
-      const myCart = JSON.parse(localStorage.getItem("mycart"));
-      var isInMyCart = false;
-      myCart.items.forEach((item) => {
-        if (item.product.pid == product.pid) {
-          item.quantity = parseInt(item.quantity) + parseInt(quantity);
-          isInMyCart = true;
+      "quantity" : quantity,
+      "product" : product
+    }
+    
+    if(localStorage.getItem("mycart")) {
+      const myCart = JSON.parse(localStorage.getItem("mycart"))
+      var isInMyCart = false
+      myCart.items.forEach((item)=>{
+        if(item.product.pid == product.pid){
+          item.quantity = parseInt(item.quantity) + parseInt(quantity)
+          isInMyCart = true
         }
-      });
+      })
 
-      if (!isInMyCart) myCart.items.push(currentItem);
-      localStorage.setItem("mycart", JSON.stringify(myCart));
+      if(!isInMyCart)
+        myCart.items.push(currentItem)
+      localStorage.setItem("mycart", JSON.stringify(myCart))
     } else {
       emptyCart.items.push(currentItem);
       localStorage.setItem("mycart", JSON.stringify(emptyCart));
     }
-
-    setMsg("Product add to cart.");
-  };
+     
+    //setMsg("Product add to cart.")
+    alert("Product add to cart.")
+    window.location.reload()
+  }
 
   function isVerified() {
-    setMsg("");
-    var rs = true;
-    if (quantity == "" || quantity == null || quantity <= 0) {
-      setMsg((msg) => [...msg, "Enter quantity please.  "]);
-      rs = false;
-    }
-
-    if (quantity > 10) {
-      setMsg((msg) => [...msg, "The maximum quantity not more than 10.  "]);
-      rs = false;
-    }
-    var qty = parseInt(quantity);
-    if (!Number.isInteger(qty)) {
-      setMsg((msg) => [...msg, "Quantity should be a number.  "]);
-      rs = false;
-    }
+    setMsg("")
+    var rs = true
+    // if (quantity == "" || quantity == null || quantity <= 0) {
+    //   setMsg(msg => [...msg, "Enter quantity please.  "])
+    //   rs = false
+    // }
+    
+    // if (quantity > 10) {
+    //   setMsg(msg => [...msg, "The maximum quantity not more than 10.  "])
+    //   rs = false
+    // }
+    // var qty = parseInt(quantity)
+    // if (!Number.isInteger(qty)) {
+    //   setMsg(msg => [...msg, "Quantity should be a number.  "])
+    //   rs = false
+    // }
 
     return rs;
   }
@@ -115,6 +119,7 @@ function Product(props) {
               type="button"
               id="cart_btn"
               class="btn btn-primary d-inline mt-2"
+              onClick={btn_addtocart}
             >
               Add to Cart
             </button>  

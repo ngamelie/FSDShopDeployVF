@@ -58,7 +58,7 @@ router.post("/search", async(req, res) => {
 // -- getNameSearch------------------------------------------------ //
 router.get("/name/:name", async(req, res) => {
     const str = req.params.name
-    const params = str.split("_")
+    const params = str.split("___")
 
     try {
         const list = await rep.getNameSearch(params[0], parseInt(4*(params[1]-1)), 4)
@@ -75,6 +75,19 @@ router.get("/namenum/:name", async(req, res) => {
     const name = req.params.name
     try {
         const list = await rep.getNameSearchNum(name)
+        res.send(list)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
+// -- getByCategory ------------------------------------------------ //
+router.get("/category/:cid", async(req, res) => {
+    const cid = req.params.cid
+    try {
+        const list = await rep.getByCategory(cid)
         res.send(list)
     } catch (e) {
         console.error('error is:', e.message);
