@@ -116,10 +116,11 @@
 2. To do until next Scrum:
 	- Admin module backend Category CRUD
 	- Admin module backend Product CRUD
-	- product search by category
 	- backend order CRUD
 	- backend order_itme CRUD
 	- backend review CRUD
+	- product searching
+	- search result paging
 
 3. Need assistance / figure things out
 	- Github training
@@ -183,4 +184,32 @@
 	- user Profile base on our Common design
 
 3. Need assistance / figure things out
-	- will update later		
+	- will update later	
+	
+2022/09/21 (Zeen)
+1. Done / not done since last scrum:
+	- user registration and login (done)
+	- Authentication and authorization (done)
+	- route assignment and protect (testing)
+	- Admin module backend Category CRUD (done)
+	- Admin module backend Product CRUD (done)
+	- backend order CRUD (testing)
+	- backend order_itme CRUD (testing)
+	- backend review CRUD (testing)
+	- product searching (done)
+	- search result paging (done)
+	- learn to use scrum and The Agile Software Development (not done)
+	- learn how to use github (not done)
+
+2. To do until next Scrum:
+	- backend order CRUD (testing)
+	- backend order_itme CRUD (testing)
+	- backend review CRUD (testing)
+	- searching product by filter 
+	- search result paging
+
+3. Need assistance / figure things out
+	- Github training
+	
+	
+	
