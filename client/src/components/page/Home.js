@@ -86,7 +86,7 @@ function Home(props) {
                   />
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title">
-                      <Link to={`/product/${item.id}`}>{item.description}</Link>
+                      <Link to={`/product/${item.pid}`}>{item.description}</Link>
                     </h5>
                     <StarRatings
                       rating={item.rate}

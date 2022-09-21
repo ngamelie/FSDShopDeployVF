@@ -204,33 +204,6 @@ footer {
   width: 100%;
 }
 
-/* Ratings */
-
-.rating-outer {
-  display: inline-block;
-  position: relative;
-  font-family: FontAwesome;
-  color: #fdcc0d;
-}
-
-.rating-outer::before {
-  content: '\f006 \f006 \f006 \f006 \f006';
-}
-
-.rating-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-
-.rating-inner::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
-  color: #f8ce0b;
-}
-
 /* Product Details Page */
 #product_id {
   color: grey;
@@ -270,7 +243,7 @@ footer {
 }
 
 #product_image {
-  margin-top: 9rem;
+  margin-top: 3rem;
 }
 
 /* Loader */
