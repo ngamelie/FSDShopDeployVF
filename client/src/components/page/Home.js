@@ -13,19 +13,13 @@ import { Navbar, Button, Container, Row, Nav, Image } from "react-bootstrap";
 
 function Home() {
   const [productList, setProductList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-
+  
   useEffect(() => {
     axios.get("http://localhost:3001/product/").then((response) => {
       setProductList(response.data);
-      //console.log(response.data);
+      console.log(response.data);
     });
   }, []);
-
-  function setCurrentpageNo(pageNumber) {
-    setCurrentPage(pageNumber)
-  }
-
 
   return (
     <div className="homecontainer">
@@ -44,7 +38,7 @@ function Home() {
                   />
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title">
-                      <Link to={`/product/${item.id}`}>{item.description}</Link>
+                      <Link to={`/product/${item.pid}`}>{item.description}</Link>
                     </h5>
                     <StarRatings
                       rating={item.rate}
@@ -57,14 +51,14 @@ function Home() {
                     
                   </div>
                   <div className="btnview">
-                    <Link to={`/product/${item.id}`}><span id="view_btn">View Details</span></Link>                    
+                    <Link to={`/product/${item.pid}`}><span id="view_btn">View Details</span></Link>                    
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </section>
-        <div className="d-flex justify-content-center mt-5">
+        {/* <div className="d-flex justify-content-center mt-5">
           <Pagination 
             activePage = {currentPage}
             itemsCountPerPage = {4}
@@ -77,7 +71,7 @@ function Home() {
             itemClass = "page-item"
             linkClass= "page-link"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
