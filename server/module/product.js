@@ -58,7 +58,7 @@ router.post("/search", async(req, res) => {
 // -- getNameSearch------------------------------------------------ //
 router.get("/name/:name", async(req, res) => {
     const str = req.params.name
-    const params = str.split("_")
+    const params = str.split("_/_")
 
     try {
         const list = await rep.getNameSearch(params[0], parseInt(4*(params[1]-1)), 4)
