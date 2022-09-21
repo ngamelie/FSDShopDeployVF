@@ -137,6 +137,23 @@
 
 3. Need assistance / figure things out
 	- Redux training
+	
+	
+2022/09/20 (Jia)
+1. Done / not done since last scrum:
+	- prepare testing data -export(validation test)
+	- user Profile
+	- create Heroku account
+	- deploy webapp in Heroku(https://www.youtube.com/watch?v=lwOsI8LtVEQ)
+	- github learn more function and practice
+
+2. To do until next Scrum:
+	- continue follow video to deploy our website
+	- github 
+
+3. Need assistance / figure things out
+	- update scrum_daliy but lose all the info
+	- question about user authorization
   
   =============================================================
   
@@ -154,4 +171,16 @@
 3. Need assistance / figure things out
 	- deployment training
 
-	
+2022/09/21 (Jia)
+1. Done / not done since last scrum:
+	- user Profile
+	- deploy webapp in Heroku(https://www.youtube.com/watch?v=lwOsI8LtVEQ)
+	- github-learn more function and practice
+
+2. To do until next Scrum:
+	- continue follow video to deploy our website
+	- github 
+	- user Profile base on our Common design
+
+3. Need assistance / figure things out
+	- will update later		
