@@ -12,7 +12,7 @@ function Product(props)  {
   const [quantity, setQuantity] = useState(0)
   const [msg, setMsg] = useState("")
 
-  const pid = 1  // props.pid
+  const pid = 2  // props.pid
   const uid = 1   // get uid from token
 
   useEffect(() => {

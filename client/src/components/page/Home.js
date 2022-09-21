@@ -10,20 +10,62 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import { Navbar, Button, Container, Row, Nav, Image } from "react-bootstrap";
+import config from '../config/Config'
+const PATH = config().path
 
-function Home() {
+function Home(props) {
   const [productList, setProductList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [rsLength, setRsLength] = useState(0);
+  const url = window.location.href
+  const key = url.split("/")[url.split("/").length - 1]
 
   useEffect(() => {
-    axios.get("http://localhost:3001/product/").then((response) => {
-      setProductList(response.data);
-      //console.log(response.data);
-    });
+    if(url.includes("product/name")){
+      axios.get(PATH + "/product/namenum/" + key).then((response) => {
+        setRsLength(response.data.length)
+        });
+
+      axios.get(PATH + "/product/name/" + key + "_1").then((response) => {
+        setProductList(response.data);
+        });
+
+    } else {
+      // change here after
+      axios.get(PATH + "/product").then((response) => {
+        setRsLength(response.data.length);
+      });
+
+      axios.get(PATH + "/product/page/1").then((response) => {
+        setProductList(response.data);
+      });
+    }
+
   }, []);
+
+
 
   function setCurrentpageNo(pageNumber) {
     setCurrentPage(pageNumber)
+      if(url.includes("product/name")){
+        axios.get(PATH + "/product/namenum/" + key).then((response) => {
+          setRsLength(response.data.length)
+          });
+  
+        axios.get(PATH + "/product/name/" + key + "_" + pageNumber).then((response) => {
+          setProductList(response.data);
+          });
+
+      } else {
+        // change here after
+        axios.get(PATH + "/product").then((response) => {
+          setRsLength(response.data.length);
+        });
+  
+        axios.get(PATH + "/product/page/" + pageNumber).then((response) => {
+          setProductList(response.data);
+          });
+      }
   }
 
 
@@ -57,7 +99,7 @@ function Home() {
                     
                   </div>
                   <div className="btnview">
-                    <Link to={`/product/${item.id}`}><span id="view_btn">View Details</span></Link>                    
+                    <Link to={`/product/${item.pid}`}><span id="view_btn">View Details</span></Link>                    
                   </div>
                 </div>
               </div>
@@ -68,7 +110,7 @@ function Home() {
           <Pagination 
             activePage = {currentPage}
             itemsCountPerPage = {4}
-            totalItemsCount = {10}
+            totalItemsCount = {rsLength}
             onChange = {setCurrentpageNo}
             nextPageText = {"Next"}
             prevPageText = {"Prev"}

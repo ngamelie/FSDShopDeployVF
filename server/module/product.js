@@ -29,6 +29,19 @@ router.get("/", async(req, res) => {
     
 })
 
+// -- get all Paging------------------------------------------------ //
+router.get("/page/:page", async(req, res) => {
+    const p = parseInt(req.params.page)
+    try {
+        const obj = await rep.getPageAll( 4 * (p - 1) , 4)
+        res.send(obj)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
 // -- getSearch------------------------------------------------ //
 router.post("/search", async(req, res) => {
     const obj = req.body
@@ -44,10 +57,24 @@ router.post("/search", async(req, res) => {
 
 // -- getNameSearch------------------------------------------------ //
 router.get("/name/:name", async(req, res) => {
-    const v = req.params.name
-    console.log(v)
+    const str = req.params.name
+    const params = str.split("_")
+
     try {
-        const list = await rep.getNameSearch(v)
+        const list = await rep.getNameSearch(params[0], parseInt(4*(params[1]-1)), 4)
+        res.send(list)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
+// -- getNameSearchNum ------------------------------------------------ //
+router.get("/namenum/:name", async(req, res) => {
+    const name = req.params.name
+    try {
+        const list = await rep.getNameSearchNum(name)
         res.send(list)
     } catch (e) {
         console.error('error is:', e.message);
