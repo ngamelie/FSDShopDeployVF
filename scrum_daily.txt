@@ -1,0 +1,141 @@
+2022/09/16 (Jia - Zeen - Ngan)
+1. Done / not done since last scrum:
+	- created project proposal
+	- created database mockup
+	- submitted project proposal
+	- database desgin
+
+2022/09/16 (Zeen)
+2. To do until next Scrum:  
+	- Database script
+	- Create ER diagram
+3. Need assistance / figure things out
+	- None
+
+2022/09/16 (Jia)
+2. To do until next Scrum:
+	- project plan
+	- trello
+	- find a cloud service provider
+3. Need assistance / figure things out
+	- None
+	
+2022/09/16 (Ngan)
+2. To do until next Scrum: 
+	- setup the github project repository
+	- setup the initial project (client - server)
+3. Need assistance / figure things out
+	- Github training
+=============================================================
+
+2022/09/18 (Zeen)
+1. Done / not done since last scrum:
+	- Database script (done)
+	- Create ER diagram (done)
+
+2. To do until next Scrum:
+	- Program structure design
+
+3. Need assistance / figure things out
+	- Improve existing design，refinement and clear logic
+
+2022/09/18 (Jia)
+1. Done / not done since last scrum:
+	- project plan(Done)
+	- Use case diagram(Done)
+	- trello (create workspace https://trello.com/invite/b/ON6PAPY9/3f8f99fc21452b9e27952680608cc0b7/electronic-fsdshop)
+	- find a cloud service provider (do some research on EC2 and Heroku)
+
+2. To do until next Scrum:
+	- trello
+	- find a cloud service provider
+
+3. Need assistance / figure things out
+	- Discuss task assignments
+	
+2022/09/18 (Ngan)
+1. Done / not done since last scrum:
+	- setup the github project repository
+	- setup the initial project (client - server)
+
+2. To do until next Scrum:
+	- design home page layout
+
+3. Need assistance / figure things out
+	- find and test a layout with bootstrap library
+=============================================================
+
+2022/09/19 (Zeen)
+1. Done / not done since last scrum:
+	- Program structure design
+
+2. To do until next Scrum:
+	- user registration and login
+	- Authentication and authorization
+	- route assignment and protect
+	- learn to use scrum and The Agile Software Development
+	- learn how to use github
+
+3. Need assistance / figure things out
+	- How JWT works for nodejs rest api
+	- Github training
+	
+2022/09/19 (Jia)
+1. Done / not done since last scrum:
+	- trello
+
+2. To do until next Scrum:
+	- User Profile
+	- find a cloud service provider
+	
+3. Need assistance / figure things out
+	- none
+
+2022/09/19 (Ngan)
+1. Done / not done since last scrum:
+	- design home page layout
+
+2. To do until next Scrum:
+	- Testing layout with database 
+	- Product Searching  - Pagination	
+
+3. Need assistance / figure things out
+	- Github training
+=============================================================
+
+2022/09/20 (Zeen)
+1. Done / not done since last scrum:
+	- user registration and login (testing)
+	- Authentication and authorization (testing)
+	- route assignment and protect (testing)
+	- learn to use scrum and The Agile Software Development (not done)
+	- learn how to use github (not done)
+
+2. To do until next Scrum:
+	- Admin module backend Category CRUD
+	- Admin module backend Product CRUD
+	- product search by category
+	- backend order CRUD
+	- backend order_itme CRUD
+	- backend review CRUD
+
+3. Need assistance / figure things out
+	- Github training
+	
+2022/09/20 (Ngan)
+1. Done / not done since last scrum:
+	- design login - registration page (done)
+	- design product detail page (done)
+	- Testing product with front end and postmal (done)
+	- Product Pagination (not done)
+
+2. To do until next Scrum:
+	- design checkout page
+	- design admin page	
+
+3. Need assistance / figure things out
+	- Redux training
+  
+  =============================================================
+
+	
