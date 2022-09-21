@@ -124,20 +124,18 @@
 	
 2022/09/20 (Ngan)
 1. Done / not done since last scrum:
-	- Testing layout with database 
-	- Product Searching  - Pagination
+	- design login - registration page (done)
+	- design product detail page (done)
+	- Testing product with front end and postmal (done)
+	- Product Pagination (not done)
 
 2. To do until next Scrum:
-	- design login - registration layout
-	- design product detail layout
-	- design checkout layout	
+	- design checkout page
+	- design admin page	
 
 3. Need assistance / figure things out
 	- Redux training
-	
+  
+  =============================================================
 
-	
-	
-	
-	
 	
