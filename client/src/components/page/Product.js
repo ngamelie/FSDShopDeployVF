@@ -25,8 +25,6 @@ function Product() {
   }, []);
 
   const btn_addtocart = () => {
-    if (!isVerified()) return;
-
     const emptyCart = {
       uid: uid,
       items: [],
