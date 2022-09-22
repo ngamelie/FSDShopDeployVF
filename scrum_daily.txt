@@ -98,7 +98,7 @@
 2. To do until next Scrum:
 	- design login - registration page
 	- design product detail page
-	- Testing product with front end and postmal 
+	- Testing product with front end and postman 
 	- Product Pagination 	
 
 3. Need assistance / figure things out
@@ -129,11 +129,11 @@
 1. Done / not done since last scrum:
 	- design login - registration page (done)
 	- design product detail page (done)
-	- Testing product with front end and postmal (done)
+	- Testing product with front end and postman (done)
 	- Product Pagination (not done)
 
 2. To do until next Scrum:
-	- design checkout page
+	- design checkout: Product Detail - Shipping - Order - Payment page
 	- design admin page	
 
 3. Need assistance / figure things out
@@ -158,20 +158,6 @@
   
   =============================================================
   
-  2022/09/21 (Ngan)
-1. Done / not done since last scrum:
-	- design checkout page
-	- design admin page
-	- Product Pagination 
-
-2. To do until next Scrum:
-	- test admin page with database
-	- test checkout
-		
-
-3. Need assistance / figure things out
-	- deployment training
-
 2022/09/21 (Jia)
 1. Done / not done since last scrum:
 	- user Profile
@@ -211,5 +197,20 @@
 3. Need assistance / figure things out
 	- Github training
 	
+2022/09/21 (Ngan)
+1. Done / not done since last scrum:
+	- design checkout:Product Detail - Shipping - Order - Payment page
+	- Testing product with front end and postmal (done)
+	- Product Pagination (done)
+	- design admin page (not done)	
+
+2. To do until next Scrum:
+	- design and test admin page 
+	- test application
+	- deployment info		
+
+3. Need assistance / figure things out
+	- deployment training
 	
+=============================================================	
 	
