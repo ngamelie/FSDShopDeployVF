@@ -14,6 +14,7 @@ import config from '../config/Config'
 const PATH = config().path
 
 //this is my home page
+// this is a second change
 function Home(props) {
   const [productList, setProductList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,13 +36,6 @@ function Home(props) {
 
     } 
 
-    else if(url.includes("product/category")){
-      Axios.get(PATH + "/product/category/" + key).then((response) => {
-        setProductList(response.data);
-      });
-    } 
-    
-    
     else if(url.includes("product/category")){
       Axios.get(PATH + "/product/category/" + key).then((response) => {
         setProductList(response.data);
