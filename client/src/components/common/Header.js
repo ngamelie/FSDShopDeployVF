@@ -28,7 +28,9 @@ function Header() {
       <nav className="navbar row">
         <div className="col-12 col-md-3">
           <div className="navbar-brand mx-3">
-            <Link to="/"><img src="./images/logo2.png" className="img-fluid logo" /></Link>            
+            <a href="/">
+              <img src={process.env.PUBLIC_URL + "/images/logo2.png"}  className="img-fluid logo" />
+            </a>
           </div>
         </div>
         <div className="col-12 col-md-6 mt-2 mt-md-0">

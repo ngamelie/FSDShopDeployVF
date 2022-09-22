@@ -56,12 +56,26 @@ router.post("/search", async(req, res) => {
 })
 
 // -- getNameSearch------------------------------------------------ //
-router.get("/name/:name", async(req, res) => {
-    const str = req.params.name
-    const params = str.split("___")
+// router.get("/name/:name", async(req, res) => {
+//     const str = req.params.name
+//     const params = str.split("___")
+
+//     try {
+//         const list = await rep.getNameSearch(params[0], parseInt(4*(params[1]-1)), 4)
+//         res.send(list)
+//     } catch (e) {
+//         console.error('error is:', e.message);
+//         res.send()
+//     }
+    
+// })
+
+router.get("/name/:name/:page", async(req, res) => {
+    const name = req.params.name
+    const page = parseInt(req.params.page)
 
     try {
-        const list = await rep.getNameSearch(params[0], parseInt(4*(params[1]-1)), 4)
+        const list = await rep.getNameSearch(name, 4*(page-1), 4)
         res.send(list)
     } catch (e) {
         console.error('error is:', e.message);
