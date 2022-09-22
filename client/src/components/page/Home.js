@@ -34,6 +34,12 @@ function Home(props) {
       });
 
     } 
+
+    else if(url.includes("product/category")){
+      Axios.get(PATH + "/product/category/" + key).then((response) => {
+        setProductList(response.data);
+      });
+    } 
     
     
     else if(url.includes("product/category")){
