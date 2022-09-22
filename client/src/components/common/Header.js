@@ -23,8 +23,9 @@ function Header() {
       setOrderNum( num )
     }
 
-    if(sessionStorage.getItem("token")){
-      const email = JSON.parse(sessionStorage.getItem("token")).user.uemail
+    if(sessionStorage.getItem("token") && !isNaN(sessionStorage.getItem("token"))){
+      const obj = JSON.parse(sessionStorage.getItem("token"))
+      const email = obj.user.uemail
       setUemail(email)
     }
   })
@@ -57,9 +58,9 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
-          { (uemail == "" ) 
+          { (uemail=="") 
             ? <Link to="/login" className="btn" id="login_btn">Login</Link>
-            : <Link to="/user/profile">Welcome: {uemail}</Link>
+            : <Link to="/user/profile">Welcome: {uemail}</Link> 
           }
           
           <Link to="/shopping/cart"><span id="cart" className="ml-3">Cart</span></Link>

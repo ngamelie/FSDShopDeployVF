@@ -26,11 +26,6 @@ router.post("/", (req, res) => {
     const obj = req.body   
     var bcry = ""
 
-    if(rep.getOneByEmail(req.body.uemail)){
-        res.send("Your email has already registe.")
-        return
-    }
-
     bcrypt.hash(obj.pword, 10, (err, hash) => {
         if (err) {
             console.log(err)
@@ -39,11 +34,11 @@ router.post("/", (req, res) => {
         bcry = hash
     })
 
-    setTimeout(()=>{
+    setTimeout(async ()=>{
         try {
             obj.pword = bcry
-            const rs =  rep.newOne(obj)
-            res.send("New user has been created.")
+            var msg = await rep.newOne(obj)
+            res.send(msg)
         } catch (e) {
             console.error('error is:', e.message);
             res.send(e.message)

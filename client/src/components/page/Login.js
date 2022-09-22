@@ -57,6 +57,21 @@ function Login() {
   if (objToken && objToken.isAuth.charAt(objToken.isAuth.length - 1) == "1") {
     return (
       <>
+      This is admin page / we may change here to a component
+        <div className="form-group">
+          Welcome: {JSON.parse(sessionStorage.getItem("token")).user.uemail}{" "}
+          &nbsp;&nbsp;
+        </div>
+        <button className="btn btn-outline-secondary" onClick={btn_logoff}>
+          {" "}
+          Logoff{" "}
+        </button>
+      </>
+    );
+  } else if (objToken && objToken.isAuth.charAt(objToken.isAuth.length - 1) == "0") {
+    return (
+      <>
+      This is user profile page / we may change here to a component
         <div className="form-group">
           Welcome: {JSON.parse(sessionStorage.getItem("token")).user.uemail}{" "}
           &nbsp;&nbsp;
