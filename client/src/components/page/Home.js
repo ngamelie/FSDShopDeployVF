@@ -13,6 +13,10 @@ import { Navbar, Button, Container, Row, Nav, Image } from "react-bootstrap";
 import config from '../config/Config'
 const PATH = config().path
 
+//this is my home page
+// this is a second change
+
+// zeen changed here
 function Home(props) {
   const [productList, setProductList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +37,7 @@ function Home(props) {
       });
 
     } 
-    
+
     else if(url.includes("product/category")){
       Axios.get(PATH + "/product/category/" + key).then((response) => {
         setProductList(response.data);
