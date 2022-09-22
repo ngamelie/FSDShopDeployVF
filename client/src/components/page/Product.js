@@ -28,9 +28,6 @@ function Product() {
   }, []);
 
   const btn_addtocart = () => {
-    if (!isVerified()) 
-      return
-
     const emptyCart = {
       "uid" : uid,
       "items" : []
@@ -64,56 +61,8 @@ function Product() {
     window.location.reload()
   }
 
-  function isVerified() {
-    setMsg("")
-    var rs = true
-    // if (quantity == "" || quantity == null || quantity <= 0) {
-    //   setMsg(msg => [...msg, "Enter quantity please.  "])
-    //   rs = false
-    // }
-    
-    // if (quantity > 10) {
-    //   setMsg(msg => [...msg, "The maximum quantity not more than 10.  "])
-    //   rs = false
-    // }
-    // var qty = parseInt(quantity)
-    // if (!Number.isInteger(qty)) {
-    //   setMsg(msg => [...msg, "Quantity should be a number.  "])
-    //   rs = false
-    // }
-
-    return rs
-  }
-
   return (
     < >
-
-<div class="container container-fluid">
-  <div class="row f-flex justify-content-around">
-    <div class="col-12 col-lg-5 img-fluid" id="product_image">
-      <img
-        src={process.env.PUBLIC_URL + `/images/${product.img}.jpg`}
-        alt="img product"
-        height="400"
-        width="400"
-      />
-    </div>
-    <div class="col-12 col-lg-5 mt-5">
-      <h3>{product.pname}</h3>
-      <p id="product_id">Product # {product.pid}</p>
-      <hr />
-      <StarRatings
-        rating={product.rate}
-        numberOfStars={5}
-        starRatedColor="#febd69"
-        starDimension={20}
-        starSpacing={1}
-      />
-      <hr />
-    </div>
-  </div>
-</div>
-
 <div class="container container-fluid">
   <div class="row f-flex justify-content-around">
     <div class="col-12 col-lg-5 img-fluid" id="product_image">
