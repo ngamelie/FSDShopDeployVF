@@ -13,6 +13,7 @@ import { Navbar, Button, Container, Row, Nav, Image } from "react-bootstrap";
 import config from '../config/Config'
 const PATH = config().path
 
+//this is my home page
 function Home(props) {
   const [productList, setProductList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
