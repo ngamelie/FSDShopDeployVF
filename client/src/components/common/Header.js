@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap";
@@ -11,17 +11,17 @@ function Header() {
   const [orderNum, setOrderNum] = useState(0);
 
   useEffect(() => {
-    if(localStorage.getItem("mycart")) {
-      const myCart = JSON.parse(localStorage.getItem("mycart"))
-      let num = 0
-      myCart.items.forEach((item)=>{
-        num += parseInt(item.quantity)
-      })
+    if (localStorage.getItem("mycart")) {
+      const myCart = JSON.parse(localStorage.getItem("mycart"));
+      let num = 0;
+      myCart.items.forEach((item) => {
+        num += parseInt(item.quantity);
+      });
 
       //setOrderNum( myCart.items.length)
-      setOrderNum( num )
+      setOrderNum(num);
     }
-  })
+  });
 
   return (
     <div>
@@ -53,12 +53,17 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
-          <Link to="/login" className="btn" id="login_btn">Login</Link>
-          <span id="cart" className="ml-3">Cart</span>
-          <span className="ml-1" id="cart_count">
-            {orderNum}
-
-          </span>
+          <Link to="/login" className="btn" id="login_btn">
+            Login
+          </Link>
+          <Link to="/cart" className="btn" >
+            <span id="cart" className="ml-3">
+              Cart
+            </span>
+            <span className="ml-1" id="cart_count">
+              {orderNum}
+            </span>
+          </Link>
         </div>
       </nav>
     </div>

@@ -78,11 +78,8 @@ function Cart() {
                 Est. total:
                 <span className="order-summary-values">$765.56</span>
               </p>
-
               <hr />
-              <button id="checkout_btn" className="btn btn-primary btn-block">
-                Check out
-              </button>
+              <Link to="/shipping" id="checkout_btn" className="btn btn-primary btn-block">Check out</Link>             
             </div>
           </div>
         </div>

@@ -7,6 +7,10 @@ import Home from "./components/page/Home";
 import Login from "./components/page/Login";
 import Registration from "./components/page/Registration";
 import Product from "./components/page/Product";
+import Cart from "./components/page/Cart";
+import Shipping from "./components/page/Shipping";
+import Order from "./components/page/Order";
+import Payment from "./components/page/Payment";
 
 function App() {
   return (
@@ -17,6 +21,9 @@ function App() {
         <Route path="/" exact element={<Home />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/cart" exact element={<Cart />} />
+          <Route path="/shipping" exact element={<Shipping />} />
+          <Route path="/order" exact element={<Order />} />
+          <Route path="/payment" exact element={<Payment />} />
 
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/product/:id" exact element={<Product />} />
