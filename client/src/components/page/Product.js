@@ -1,25 +1,24 @@
-import React, { useState, useEffect, Component } from "react";
-import { Button, Card, Alert, Nav, variant } from "react-bootstrap";
+import React, {useState, useEffect, Component} from "react";
+import { Button, Card, Alert, Nav, variant } from 'react-bootstrap';
 import { useParams, useNavigate } from "react-router-dom";
 import StarRatings from "react-star-ratings";
-import { Link } from "react-router-dom";
 
-import validator from "validator";
-import Axios from "axios";
-import "../../asset/common/Style.css";
-import config from "../config/Config";
-const PATH = config().path + "/product";
+import validator from 'validator';
+import Axios from "axios"
+import '../../asset/common/Style.css'
+import config from '../config/Config'
+const PATH = config().path + "/product"
 
-function Product(props) {
-  
+function Product()  {
+
   let { id } = useParams();
   const [product, setProduct] = useState([])
   //const [quantity, setQuantity] = useState(0)
   const quantity = 1
   const [msg, setMsg] = useState("")
 
-  //const pid = 2  // props.pid
-  const uid = 1; // get uid from token
+  //const pid = 2  // pid
+  const uid = 1   // get uid from token
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/product/${id}`).then((rs) => {
@@ -29,12 +28,13 @@ function Product(props) {
   }, []);
 
   const btn_addtocart = () => {
-    if (!isVerified()) return;
+    if (!isVerified()) 
+      return
 
     const emptyCart = {
-      uid: uid,
-      items: [],
-    };
+      "uid" : uid,
+      "items" : []
+    }
 
     const currentItem = {
       "quantity" : quantity,
@@ -55,8 +55,8 @@ function Product(props) {
         myCart.items.push(currentItem)
       localStorage.setItem("mycart", JSON.stringify(myCart))
     } else {
-      emptyCart.items.push(currentItem);
-      localStorage.setItem("mycart", JSON.stringify(emptyCart));
+      emptyCart.items.push(currentItem)
+      localStorage.setItem("mycart", JSON.stringify(emptyCart))
     }
      
     //setMsg("Product add to cart.")
@@ -82,53 +82,56 @@ function Product(props) {
     //   rs = false
     // }
 
-    return rs;
+    return rs
   }
 
   return (
-    <>
-      <div className="container container-fluid">
-        <div className="row f-flex justify-content-around">
-          <div className="col-12 col-lg-5 img-fluid" id="product_image">
-            <img
-              src={process.env.PUBLIC_URL + `/images/${product.img}.jpg`}
-              alt="img product"
-              height="350"
-              width="400"
-            />
-          </div>
-          <div className="col-12 col-lg-5 mt-5">
-            <h3>{product.pname}</h3>
-            <p id="product_id">Product # {product.pid}</p>
-            <hr />
-            <StarRatings
-              rating={product.rate}
-              numberOfStars={5}
-              starRatedColor="#febd69"
-              starDimension={20}
-              starSpacing={1}
-            />
-            <hr />
+    < >
 
-            <p id="product_price">${product.price}</p>
+<div class="container container-fluid">
+  <div class="row f-flex justify-content-around">
+    <div class="col-12 col-lg-5 img-fluid" id="product_image">
+      <img
+        src={process.env.PUBLIC_URL + `/images/${product.img}.jpg`}
+        alt="img product"
+        height="400"
+        width="400"
+      />
+    </div>
+    <div class="col-12 col-lg-5 mt-5">
+      <h3>{product.pname}</h3>
+      <p id="product_id">Product # {product.pid}</p>
+      <hr />
+      <StarRatings
+        rating={product.rate}
+        numberOfStars={5}
+        starRatedColor="#febd69"
+        starDimension={20}
+        starSpacing={1}
+      />
+      <hr />
 
-            <hr />
-            <h4 className="mt-2">Description:</h4>
-            <p>{product.description}</p>
-            <button
-              type="button"
-              id="cart_btn"
-              class="btn btn-primary d-inline mt-2"
-              onClick={btn_addtocart}
-            >
-              Add to Cart
-            </button>  
-                   
-          </div>
-        </div>
-      </div>
-    </>
+      <p id="product_price">${product.price}</p>
+      
+      <hr />
+      <h4 class="mt-2">Description:</h4>
+      <p>{product.description}</p>
+      
+      <button
+        type="button"
+        id="cart_btn"
+        class="btn btn-primary d-inline mt-2"
+        onClick={btn_addtocart}
+      >
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
+
+    </ >
   );
 }
+
 
 export default Product;

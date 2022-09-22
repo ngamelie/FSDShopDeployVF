@@ -13,10 +13,6 @@ import { Navbar, Button, Container, Row, Nav, Image } from "react-bootstrap";
 import config from '../config/Config'
 const PATH = config().path
 
-//this is my home page
-// this is a second change
-
-// zeen changed here
 function Home(props) {
   const [productList, setProductList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,19 +28,18 @@ function Home(props) {
       setRsLength(response.data.length)
       });
 
-      Axios.get(PATH + "/product/name/" + "___1").then((response) => {
+      Axios.get(PATH + "/product/name/" + key + "/1").then((response) => {
       setProductList(response.data);
       });
 
     } 
-
+    
     else if(url.includes("product/category")){
       Axios.get(PATH + "/product/category/" + key).then((response) => {
         setProductList(response.data);
       });
     } 
-    
-    
+  
     else {
       // change here after
       Axios.get(PATH + "/product").then((response) => {
@@ -69,19 +64,18 @@ function Home(props) {
           setRsLength(response.data.length)
           });
   
-        Axios.get(PATH + "/product/name/" + key + "___" + pageNumber).then((response) => {
+        Axios.get(PATH + "/product/name/" + key + "/" + pageNumber).then((response) => {
           setProductList(response.data);
           });
 
       } 
-      
+
       else if(url.includes("product/category")){
           Axios.get(PATH + "/product/category/" + key).then((response) => {
             setProductList(response.data);
           });
       } 
-      
-      
+    
       else {
         // change here after
         Axios.get(PATH + "/product").then((response) => {
@@ -99,15 +93,23 @@ function Home(props) {
 
 
       <div className="col-2">
-        <br /><br />
-          <h5>Electronics</h5>
+        <div>
+          <br /><br />
+            <h5>Electronics</h5>
 
-            { catergories.map(category => (
-              <div>
-                <a href={`/product/category/${category.cid}`}> { category.title } </a> <br/>
-              </div>
-            ))}
-
+              { catergories.map(category => (
+                <div>
+                  <a href={`/product/category/${category.cid}`}> { category.title } </a> <br/>
+                </div>
+              ))}
+        </div>
+        <div>
+            Price: from <input type="number" size="5" name="fprice"/> 
+            to <input type="number" size="5" name="toprice"/> 
+        </div>
+        <div>
+            review: more than <input type="number" size="3" name="review"/> 
+        </div>
       </div>
 
       <div className="col-10">
