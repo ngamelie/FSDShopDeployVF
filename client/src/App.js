@@ -7,6 +7,7 @@ import Home from "./components/page/Home";
 import Login from "./components/page/Login";
 import Registration from "./components/page/Registration";
 import Product from "./components/page/Product";
+import Cart from "./components/page/Cart";
 
 import Cart from "./components/page/Cart";
 import Shipping from "./components/page/Shipping";
@@ -20,7 +21,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-        <Route path="/" exact element={<Home />} />
+          <Route path="/" exact element={<Home />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/cart" exact element={<Cart />} />
           <Route path="/shipping" exact element={<Shipping />} />
@@ -31,6 +32,7 @@ function App() {
           <Route path="/product/:id" exact element={<Product />} />
           <Route path="/product/name/:name" exact element={<Home />} />
           <Route path="/product/category/:cid" exact element={<Home />} />
+          <Route path="/shopping/cart" exact element={<Cart />} />
         </Routes>
         <Footer />
       </Router>

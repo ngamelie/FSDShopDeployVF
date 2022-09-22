@@ -11,24 +11,28 @@ function Product() {
   let { id } = useParams();
   const [product, setProduct] = useState([]);
   //const [quantity, setQuantity] = useState(0)
-  const quantity = 1;
-  const [msg, setMsg] = useState("");
-
-  //const pid = 2  // pid
-  const uid = 1; // get uid from token
+  const quantity = 1
+  const [msg, setMsg] = useState("")
+  const [uemail, setUemail] = useState("")
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/product/${id}`).then((rs) => {
       //console.log(rs.data.pid);
       setProduct(rs.data);
     });
+
+    if(sessionStorage.getItem("token")){
+      const email = JSON.parse(sessionStorage.getItem("token")).user.uemail
+      setUemail(email)
+    }
+
   }, []);
 
   const btn_addtocart = () => {
     const emptyCart = {
-      uid: uid,
-      items: [],
-    };
+      "uemail" : uemail,
+      "items" : []
+    }
 
     const currentItem = {
       quantity: quantity,

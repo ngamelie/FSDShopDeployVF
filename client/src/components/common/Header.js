@@ -9,6 +9,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 function Header() {
   const [keyWord, setKeyWord] = useState("");
   const [orderNum, setOrderNum] = useState(0);
+  const [uemail, setUemail] = useState("")
 
   useEffect(() => {
     if(localStorage.getItem("mycart")) {
@@ -20,6 +21,11 @@ function Header() {
 
       //setOrderNum( myCart.items.length)
       setOrderNum( num )
+    }
+
+    if(sessionStorage.getItem("token")){
+      const email = JSON.parse(sessionStorage.getItem("token")).user.uemail
+      setUemail(email)
     }
   })
 
@@ -51,6 +57,7 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
+<<<<<<< HEAD
           <Link to="/login" className="btn" id="login_btn">
             Login
           </Link>
@@ -62,6 +69,18 @@ function Header() {
               {orderNum}
             </span>
           </Link>
+=======
+          { (uemail == "" ) 
+            ? <Link to="/login" className="btn" id="login_btn">Login</Link>
+            : <Link to="/user/profile">Welcome: {uemail}</Link>
+          }
+          
+          <Link to="/shopping/cart"><span id="cart" className="ml-3">Cart</span></Link>
+          <span className="ml-1" id="cart_count">
+            {orderNum}
+
+          </span>
+>>>>>>> eb4203913053105b3eedbe3e4b3b8abf7fd221fb
         </div>
       </nav>
     </div>
