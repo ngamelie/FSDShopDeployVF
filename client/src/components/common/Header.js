@@ -58,24 +58,7 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
-<<<<<<< HEAD
           { (uemail=="") 
-=======
-<<<<<<< HEAD
-          <Link to="/login" className="btn" id="login_btn">
-            Login
-          </Link>
-          <Link to="/cart" className="btn" >
-            <span id="cart" className="ml-3">
-              Cart
-            </span>
-            <span className="ml-1" id="cart_count">
-              {orderNum}
-            </span>
-          </Link>
-=======
-          { (uemail == "" ) 
->>>>>>> 5b4c9b9ce5155d6e780b988c2e20b5183c04909a
             ? <Link to="/login" className="btn" id="login_btn">Login</Link>
             : <Link to="/user/profile">Welcome: {uemail}</Link> 
           }
@@ -85,7 +68,6 @@ function Header() {
             {orderNum}
 
           </span>
->>>>>>> eb4203913053105b3eedbe3e4b3b8abf7fd221fb
         </div>
       </nav>
     </div>
