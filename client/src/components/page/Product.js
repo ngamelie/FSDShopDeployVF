@@ -9,13 +9,8 @@ import '../../asset/common/Style.css'
 import config from '../config/Config'
 const PATH = config().path + "/product"
 
-function Product()  {
-
-<<<<<<< HEAD
-=======
 function Product() {
   
->>>>>>> d298213d4c70c79ec5407e64c75f0be40d620e44
   let { id } = useParams();
   const [product, setProduct] = useState([])
   //const [quantity, setQuantity] = useState(0)
@@ -94,27 +89,30 @@ function Product() {
     < >
 
 <div class="container container-fluid">
-        <div class="row f-flex justify-content-around">
-          <div class="col-12 col-lg-5 img-fluid" id="product_image">
-            <img
-              src={process.env.PUBLIC_URL + `/images/${product.img}.jpg`}
-              alt="img product"
-              height="400"
-              width="400"
-            />
-          </div>
-          <div class="col-12 col-lg-5 mt-5">
-            <h3>{product.pname}</h3>
-            <p id="product_id">Product # {product.pid}</p>
-            <hr />
-            <StarRatings
-              rating={product.rate}
-              numberOfStars={5}
-              starRatedColor="#febd69"
-              starDimension={20}
-              starSpacing={1}
-            />
-            <hr />
+  <div class="row f-flex justify-content-around">
+    <div class="col-12 col-lg-5 img-fluid" id="product_image">
+      <img
+        src={process.env.PUBLIC_URL + `/images/${product.img}.jpg`}
+        alt="img product"
+        height="400"
+        width="400"
+      />
+    </div>
+    <div class="col-12 col-lg-5 mt-5">
+      <h3>{product.pname}</h3>
+      <p id="product_id">Product # {product.pid}</p>
+      <hr />
+      <StarRatings
+        rating={product.rate}
+        numberOfStars={5}
+        starRatedColor="#febd69"
+        starDimension={20}
+        starSpacing={1}
+      />
+      <hr />
+    </div>
+  </div>
+</div>
 
 <div class="container container-fluid">
   <div class="row f-flex justify-content-around">
@@ -157,9 +155,11 @@ function Product() {
   </div>
 </div>
 
+
+
     </ >
   );
-}
 
+}
 
 export default Product;
