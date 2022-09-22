@@ -51,12 +51,17 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
-          <Link to="/login" className="btn" id="login_btn">Login</Link>
-          <span id="cart" className="ml-3">Cart</span>
-          <span className="ml-1" id="cart_count">
-            {orderNum}
-
-          </span>
+          <Link to="/login" className="btn" id="login_btn">
+            Login
+          </Link>
+          <Link to="/cart" className="btn" >
+            <span id="cart" className="ml-3">
+              Cart
+            </span>
+            <span className="ml-1" id="cart_count">
+              {orderNum}
+            </span>
+          </Link>
         </div>
       </nav>
     </div>
