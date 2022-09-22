@@ -14,10 +14,14 @@ function Cart() {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/product/${id}`).then((rs) => {
-      //console.log(rs.data.pid);
-      setProduct(rs.data);
-    });
+    // Axios.get(`http://localhost:3001/product/${id}`).then((rs) => {
+    //   //console.log(rs.data.pid);
+    //   setProduct(rs.data);
+    // });
+    if(localStorage.getItem("cart")){
+setProduct(JSON.parse(localStorage.getItem("cart")).items)
+    }
+    
   }, []);
 
   return (
