@@ -24,8 +24,8 @@ const rep = {
     getOneByEmail: async function (email){
         const sql = "select * from " + tbl + " where uemail = ?"
         const [rs] = await db.query(sql, [email])
-        if (rs.length == 0 ) 
-            return false
+        // console.log(rs.length)
+        // return (rs.length == 0 ) ? false : true
         return rs[0]
     },
 
@@ -36,15 +36,24 @@ const rep = {
     },
 
     newOne: async function (obj){
-        const sql = "insert into " + tbl 
-        + " (uemail, role, pword) values (?, ?, ?)"
-        const [rs] = await db.query(sql, [
-            obj.uemail, 
-            obj.role, 
-            obj.pword
-        ])
 
-        return rs
+        const rs = await this.getOneByEmail(obj.uemail)
+
+        if (rs){
+            //console.log("duplicate email")
+            return "Your email has already registe."
+        } else {
+            const sql = "insert into " + tbl 
+            + " (uemail, role, pword) values (?, ?, ?)"
+            const [rs] = await db.query(sql, [
+                obj.uemail, 
+                obj.role, 
+                obj.pword
+            ])
+
+            //console.log("created")
+            return "New user has been created."
+        }
     },
 
     updateOne: async function (obj){

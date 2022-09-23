@@ -8,7 +8,7 @@ import Login from "./components/page/Login";
 import Registration from "./components/page/Registration";
 import Product from "./components/page/Product";
 import Cart from "./components/page/Cart";
-
+import Admin from "./components/admin/Admin";
 import Shipping from "./components/page/Shipping";
 import Order from "./components/page/Order";
 import Payment from "./components/page/Payment";
@@ -32,6 +32,7 @@ function App() {
           <Route path="/product/name/:name" exact element={<Home />} />
           <Route path="/product/category/:cid" exact element={<Home />} />
           <Route path="/shopping/cart" exact element={<Cart />} />
+          <Route path="/admin" exact element={<Admin />} />
         </Routes>
         <Footer />
       </Router>

@@ -23,8 +23,9 @@ function Header() {
       setOrderNum( num )
     }
 
-    if(sessionStorage.getItem("token")){
-      const email = JSON.parse(sessionStorage.getItem("token")).user.uemail
+    if(sessionStorage.getItem("token") && sessionStorage.getItem("token") != "null"){
+      const obj = JSON.parse(sessionStorage.getItem("token"))
+      const email = obj.user.uemail
       setUemail(email)
     }
   })
@@ -57,9 +58,13 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
+<<<<<<< HEAD
           { (uemail == "" ) 
+=======
+          { (uemail=="") 
+>>>>>>> 7fd66fd6c7bc229e256d56b40b876045e7e08004
             ? <Link to="/login" className="btn" id="login_btn">Login</Link>
-            : <Link to="/user/profile">Welcome: {uemail}</Link>
+            : <Link to="/user/profile">Welcome: {uemail}</Link> 
           }
           
           <Link to="/shopping/cart"><span id="cart" className="ml-3">Cart</span></Link>
