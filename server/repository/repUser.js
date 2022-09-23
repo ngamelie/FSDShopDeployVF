@@ -67,6 +67,19 @@ const rep = {
             obj.uid
         ]) 
         return rs
+    },
+
+    updateUserInfo: async function (obj){
+        const sql = "update " + tbl 
+            + " set add1 = ?, add2 = ?, phone1 = ? where uid = ?"
+           
+        const [rs] = await db.query(sql, [
+            obj.add1, 
+            obj.add2, 
+            obj.phone1, 
+            obj.uid
+        ]) 
+        return rs
     }
 
 
