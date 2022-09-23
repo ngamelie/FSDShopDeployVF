@@ -213,27 +213,7 @@
 	- deployment training
 	
 =============================================================	
-  2022/09/22 (Ngan)
-1. Done / not done since last scrum:
-	- design cart page
-	- design check out page(shipping information)
-	- design confirm order information page
-	- design order successful page
-	- home page-filtering module design
-	
-
-2. To do until next Scrum:
-	- test admin page with database
-	- test checkout
-	- test order
-	- test order_item
-		
-
-3. Need assistance / figure things out
-	- deployment training	
-
-
-  2022/09/22 (Zeen)
+2022/09/22 (Zeen)
 1. Done / not done since last scrum:
 	- check-out page shipping information(stored in local-storage)
 	- filtering search - category and price
@@ -263,5 +243,22 @@
 
 3. Need assistance / figure things out
 	- troubleshooting deploying
+	
+2022/09/22 (Ngan)
+1. Done / not done since last scrum:
+	- design and test admin page (done 25%)
+	- home page-filtering module design
+	- test login and registration
+	- Fix bug
+	- deployment info (not done)	
+
+2. To do until next Scrum:
+	- test admin page with database
+	- test checkout
+	- test order
+	- test order_item
+
+3. Need assistance / figure things out
+	- deployment training	
 
  =============================================================	
