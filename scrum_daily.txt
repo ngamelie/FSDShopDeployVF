@@ -200,7 +200,7 @@
 2022/09/21 (Ngan)
 1. Done / not done since last scrum:
 	- design checkout:Product Detail - Shipping - Order - Payment page
-	- Testing product with front end and postmal (done)
+	- Testing product with front end and postman (done)
 	- Product Pagination (done)
 	- design admin page (not done)	
 
