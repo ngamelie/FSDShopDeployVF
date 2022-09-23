@@ -56,7 +56,7 @@ function Login() {
   };
 
   const objToken = JSON.parse(sessionStorage.getItem("token"));
-  if (objToken && objToken.isAuth.charAt(objToken.isAuth.length - 1) == "1") {
+  if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "1") {
     return (
       <>
       This is admin page / we may change here to a component
@@ -70,7 +70,12 @@ function Login() {
         </button>
       </>
     );
-  } else if (objToken && objToken.isAuth.charAt(objToken.isAuth.length - 1) == "0") {
+  } else if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "0") {
+    //alert(JSON.parse(localStorage.getItem("mycart")).uemail)
+    //alert(objToken.user.uemail)
+    if(localStorage.getItem("mycart") && JSON.parse(localStorage.getItem("mycart")) && JSON.parse(localStorage.getItem("mycart")).uemail != objToken.user.uemail){
+      localStorage.setItem("mycart", null)
+    }
     return (
       <>
       This is user profile page / we may change here to a component

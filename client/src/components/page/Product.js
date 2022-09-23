@@ -42,7 +42,7 @@ function Product() {
       "product" : product
     }
     
-    if(localStorage.getItem("mycart")) {
+    if(localStorage.getItem("mycart") && localStorage.getItem("mycart") != "null") {
       const myCart = JSON.parse(localStorage.getItem("mycart"))
       var isInMyCart = false
       myCart.items.forEach((item)=>{

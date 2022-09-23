@@ -12,13 +12,12 @@ function Header() {
   const [uemail, setUemail] = useState("")
 
   useEffect(() => {
-    if(localStorage.getItem("mycart")) {
+    if(localStorage.getItem("mycart") && localStorage.getItem("mycart") != "null") {
       const myCart = JSON.parse(localStorage.getItem("mycart"))
       let num = 0
       myCart.items.forEach((item)=>{
         num += parseInt(item.quantity)
       })
-
       //setOrderNum( myCart.items.length)
       setOrderNum( num )
     }
@@ -30,6 +29,11 @@ function Header() {
     }
   })
 
+  const btn_logoff = () => {
+    sessionStorage.setItem("token", "null");
+    window.location.replace("/");
+  };
+  
   return (
     <div>
       <nav className="navbar row">
@@ -59,8 +63,15 @@ function Header() {
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
           { (uemail=="") 
-            ? <Link to="/login" className="btn" id="login_btn">Login</Link>
-            : <Link to="/user/profile">Welcome: {uemail}</Link> 
+            ? 
+              <Link to="/login" className="btn" id="login_btn">Login</Link>
+            : 
+            <>
+              <Link to="/user/profile"> {uemail} </Link> &nbsp; 
+              <button className="btn btn-outline-secondary" onClick={btn_logoff}>
+                {" "}Logoff{" "}
+              </button>
+            </>
           }
           
           <Link to="/shopping/cart"><span id="cart" className="ml-3">Cart</span></Link>
