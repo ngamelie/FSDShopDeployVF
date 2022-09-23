@@ -25,15 +25,17 @@ router.post("/", async(req, res) => {
         "user" : null
     }
 
-    const rs = await rep.getOneByEmail(obj.uemail)
-    bcrypt.compare(obj.pword, rs.pword, function(err, result){
-        if (result) {
-            rsObj.isAuth = 1
-            rsObj.user = rs
-            res.send(rsObj)
-        } else {
-            res.send(rsObj)
-        }
+    await rep.getOneByEmail(obj.uemail).then((rs) => {
+        bcrypt.compare(obj.pword, rs.pword, function(err, result){
+            if (result) {
+                rsObj.isAuth = 1
+                rsObj.user = rs
+                res.send(rsObj)
+            } else {
+                res.send(rsObj)
+            }
+        })
+
     })
     
 })

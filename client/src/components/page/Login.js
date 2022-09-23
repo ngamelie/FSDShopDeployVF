@@ -124,7 +124,7 @@ function Login() {
                   />
                 </div>
 
-                <button
+                <button type="button"
                   id="login_button"
                   className="btn btn-block py-3"
                   onClick={btn_login}
