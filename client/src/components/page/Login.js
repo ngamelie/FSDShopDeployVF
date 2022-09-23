@@ -36,9 +36,11 @@ function Login() {
       const obj = rs.data;
       if (obj.isAuth == 1) {
         obj.isAuth = config().auth;
-        obj.user.role == 1
-          ? (obj.user.role = config().admin)
-          : (obj.user.role = config().user);
+        if(obj.user.role == 1) {
+          obj.user.role = config().admin
+        } else {
+          obj.user.role = config().user;
+        }
         sessionStorage.setItem("token", JSON.stringify(obj));
         alert("Welcome.");
         window.location.reload();
