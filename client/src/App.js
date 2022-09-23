@@ -9,7 +9,6 @@ import Registration from "./components/page/Registration";
 import Product from "./components/page/Product";
 import Cart from "./components/page/Cart";
 
-import Cart from "./components/page/Cart";
 import Shipping from "./components/page/Shipping";
 import Order from "./components/page/Order";
 import Payment from "./components/page/Payment";
