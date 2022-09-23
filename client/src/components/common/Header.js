@@ -23,7 +23,7 @@ function Header() {
       setOrderNum( num )
     }
 
-    if(sessionStorage.getItem("token") && !isNaN(sessionStorage.getItem("token"))){
+    if(sessionStorage.getItem("token") && sessionStorage.getItem("token") != "null"){
       const obj = JSON.parse(sessionStorage.getItem("token"))
       const email = obj.user.uemail
       setUemail(email)
