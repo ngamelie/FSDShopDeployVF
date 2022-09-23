@@ -141,7 +141,11 @@ function Cart() {
                 <span className="order-summary-values">${Math.round(total * 115)/100}</span>
               </p>
               <hr />
-              <Link to="/shipping" id="checkout_btn" className="btn btn-primary btn-block">Check out</Link>             
+              {
+                (!sessionStorage.getItem("token") || sessionStorage.getItem("token") == "null") 
+                  ? <Link to="/login" className="btn btn-primary btn-block" id="checkout_btn">Login and Check out</Link>
+                  : <Link to="/shipping" id="checkout_btn" className="btn btn-primary btn-block">Check out</Link>
+              }        
             </div>
           </div>
         </div>
