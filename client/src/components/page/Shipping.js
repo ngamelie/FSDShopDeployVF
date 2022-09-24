@@ -14,7 +14,14 @@ function Checkout() {
   const [add2, setAdd2] = useState("");
   const [phone1, setPhone1] = useState("");
   const [msg, setMsg] = useState([]);
-  //const [issave, setIssave] = useState(0);
+
+  useEffect(() => {
+    Axios.get(PATH + "/" + JSON.parse(sessionStorage.getItem("token")).user.uid,{headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
+      setAdd1(rs.data.add1)
+      setAdd2(rs.data.add2)
+      setPhone1(rs.data.phone1)
+    });
+  }, []);
 
   const updateUserInfo = ()=>{
     if (isVerified()) {
@@ -24,14 +31,14 @@ function Checkout() {
         add2: add2,
         phone1: phone1
       }, {headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
-
+        window.location.replace("/order")
       });
     }
   }
   
   function isVerified() {
     var rs = true;
-    setMsg("");
+    setMsg([]);
     if (add1 == "") {
       setMsg((msg) => [...msg, "Confirm your address please."]);
       rs = false;
@@ -46,10 +53,7 @@ function Checkout() {
       setMsg((msg) => [...msg, "Confirm your phone number please."]);
       rs = false;
     }
-    if(msg) {
-      alert(msg)
-    }
-    
+
     return rs;
   }
 
@@ -67,12 +71,16 @@ function Checkout() {
               <label for="address_field">Address</label>
               <input
                 type="text"
+                defaultValue={add1}
                 id="address_field"
                 name="add1"
                 className="form-control"
                 required
                 onChange={(e) => {
                   setAdd1(e.target.value);
+                  const obj = JSON.parse(localStorage.getItem("mycart"))
+                  obj.address = e.target.value
+                  localStorage.setItem("mycart", JSON.stringify(obj))
                 }}
               />
             </div>
@@ -80,6 +88,7 @@ function Checkout() {
             <div className="form-group">
               <label for="city_field">City</label>
               <input
+                defaultValue={add2}
                 type="text"
                 id="city_field"
                 name="add2"
@@ -87,6 +96,9 @@ function Checkout() {
                 required
                 onChange={(e) => {
                   setAdd2(e.target.value);
+                  const obj = JSON.parse(localStorage.getItem("mycart"))
+                  obj.city = e.target.value
+                  localStorage.setItem("mycart", JSON.stringify(obj))
                 }}
               />
             </div>
@@ -94,6 +106,7 @@ function Checkout() {
             <div className="form-group">
               <label htmlFor="phone_field">Phone No</label>
               <input
+                defaultValue={phone1}
                 type="number"
                 id="phone_field"
                 name="phone1"
@@ -101,19 +114,20 @@ function Checkout() {
                 required
                 onChange={(e) => {
                   setPhone1(e.target.value);
+                  const obj = JSON.parse(localStorage.getItem("mycart"))
+                  obj.phone = e.target.value
+                  localStorage.setItem("mycart", JSON.stringify(obj))
                 }}
               />
             </div>
-{/* 
-            <div className="form-group">
-              Save shipping information 
-              <Form.Check aria-label="Save shipping information" name="issave" onChange={(e)=>{
-                (issave == 0) ? setIssave(1) : setIssave(0)
-                }} /> <br/>
-            </div> */}
-            <Link to="/order" id="shipping_btn" className="btn btn-block py-3" onMouseOver={ updateUserInfo }>
+            { (msg) ? msg.map( i => (    
+
+            <Alert> <li>{ i }</li> </Alert> 
+
+            )) : null }
+            <Button id="shipping_btn" className="btn btn-block py-3" type="button" onClick={ updateUserInfo }>
               CONTINUE
-            </Link>
+            </Button>
           </form>
         </div>
       </div>

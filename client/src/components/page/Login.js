@@ -74,7 +74,8 @@ function Login() {
     //alert(JSON.parse(localStorage.getItem("mycart")).uemail)
     //alert(objToken.user.uemail)
     if(localStorage.getItem("mycart") && JSON.parse(localStorage.getItem("mycart")) && JSON.parse(localStorage.getItem("mycart")).uemail != objToken.user.uemail){
-      localStorage.setItem("mycart", null)
+      //localStorage.setItem("mycart", null)
+      localStorage.removeItem("mycart")
     }
     return (
       <>

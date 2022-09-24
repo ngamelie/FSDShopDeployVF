@@ -6,12 +6,38 @@ import { Link } from "react-router-dom";
 import StepCheckout from "../common/StepCheckout";
 import Axios from "axios";
 import "../../asset/common/Style.css";
-import config from "../config/Config";
-const PATH = config().path + "/product";
+
+function isVerified() {
+  var rs = true;
+  // setMsg([]);
+  // if (add1 == "") {
+  //   setMsg((msg) => [...msg, "Confirm your address please."]);
+  //   rs = false;
+  // }
+
+  // if (add2 == "") {
+  //   setMsg((msg) => [...msg, "Confirm your city please."]);
+  //   rs = false;
+  // }
+
+  // if (phone1 == "") {
+  //   setMsg((msg) => [...msg, "Confirm your phone number please."]);
+  //   rs = false;
+  // }
+
+  return rs;
+}
+
+const btn_payment=()=>{
+  if(isVerified) {
+    localStorage.removeItem("mycart")
+    alert("Successful payment.")
+    window.location.replace("/")
+  }
+  
+}
 
 function Checkout() {
-  let { id } = useParams();
-
   return (
     <>
       <div className="step">
@@ -27,7 +53,7 @@ function Checkout() {
                 type="text"
                 id="card_num_field"
                 className="form-control"
-                value=""
+                defaultValue=""
               />
             </div>
 
@@ -37,7 +63,7 @@ function Checkout() {
                 type="text"
                 id="card_exp_field"
                 className="form-control"
-                value=""
+                defaultvalue=""
                 placeholder="MM/YY"
               />
             </div>
@@ -48,11 +74,11 @@ function Checkout() {
                 type="text"
                 id="card_cvc_field"
                 className="form-control"
-                value=""
+                defaultvalue=""
               />
             </div>
 
-            <button id="pay_btn" type="submit" className="btn btn-block py-3">
+            <button className="btn btn-block py-3" type="button" onClick={btn_payment}>
               Pay
             </button>
           </form>
