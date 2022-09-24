@@ -108,7 +108,7 @@ function Cart() {
                   <p id="card_item_price">${item.product.price}</p>
                 </div>
 
-                <div className="col-4 col-lg-3 mt-0 mt-lg-0 item_counter">
+                <div className="col-4 col-lg-2 mt-0 mt-lg-0 item_counter">
                   <div className="">
                     <input
                       type="number"
@@ -118,7 +118,7 @@ function Cart() {
                     />
                   </div>
                 </div>
-                <div className="col-4 col-lg-1 mt-0 mt-lg-0">
+                <div className="col-4 col-lg-2 mt-0 mt-lg-0">
                   <button id="delete_cart_item"  onClick={()=>btn_delete(item.product.pid)}> Delete
                   </button>
                 </div>

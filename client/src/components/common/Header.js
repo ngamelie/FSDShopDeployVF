@@ -33,11 +33,6 @@ function Header() {
   });
 
   const btn_logoff = () => {
-    sessionStorage.setItem("token", null);
-    window.location.replace("/");
-  };
-
-  const btn_logoff = () => {
     sessionStorage.setItem("token", "null");
     window.location.replace("/");
   };

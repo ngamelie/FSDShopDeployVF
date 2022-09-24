@@ -112,6 +112,7 @@ function Checkout() {
                 name="phone1"
                 className="form-control"
                 required
+                placeholder="1112223333"
                 onChange={(e) => {
                   setPhone1(e.target.value);
                   const obj = JSON.parse(localStorage.getItem("mycart"))

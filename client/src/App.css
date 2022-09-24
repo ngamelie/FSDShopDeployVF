@@ -280,6 +280,14 @@ footer {
   font-size: 1.4rem;
 }
 
+#delete_cart_item {
+  color: #febd69;
+  background: white;
+  padding: 0.3rem 0.5rem;
+  font-size: 1.1rem;
+  border: none;
+}
+
 #checkout_btn,
 .review-btn {
   background-color: #fa9c23;
@@ -288,7 +296,7 @@ footer {
   border-radius: 5rem;
 }
 
-#view_order_details {
+#shipping_btn {
   background-color: #fa9c23;
   border-color: #fa9c23;
 }
