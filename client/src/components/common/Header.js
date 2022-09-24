@@ -12,13 +12,12 @@ function Header() {
   const [uemail, setUemail] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem("mycart")) {
-      const myCart = JSON.parse(localStorage.getItem("mycart"));
-      let num = 0;
-      myCart.items.forEach((item) => {
-        num += parseInt(item.quantity);
-      });
-
+    if(localStorage.getItem("mycart") && localStorage.getItem("mycart") != "null") {
+      const myCart = JSON.parse(localStorage.getItem("mycart"))
+      let num = 0
+      myCart.items.forEach((item)=>{
+        num += parseInt(item.quantity)
+      })
       //setOrderNum( myCart.items.length)
       setOrderNum(num);
     }
@@ -38,6 +37,11 @@ function Header() {
     window.location.replace("/");
   };
 
+  const btn_logoff = () => {
+    sessionStorage.setItem("token", "null");
+    window.location.replace("/");
+  };
+  
   return (
     <div>
       <nav className="navbar row">

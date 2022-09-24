@@ -56,7 +56,7 @@ function Login() {
   };
 
   const objToken = JSON.parse(sessionStorage.getItem("token"));
-  if (objToken && objToken.isAuth.charAt(objToken.isAuth.length - 1) == "1") {
+  if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "1") {
     return (
       <>
         This is admin page / we may change here to a component
@@ -69,10 +69,20 @@ function Login() {
         </button>
       </>
     );
+<<<<<<< HEAD
   } else if (
     objToken &&
     objToken.isAuth.charAt(objToken.isAuth.length - 1) == "0"
   ) {
+=======
+  } else if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "0") {
+    //alert(JSON.parse(localStorage.getItem("mycart")).uemail)
+    //alert(objToken.user.uemail)
+    if(localStorage.getItem("mycart") && JSON.parse(localStorage.getItem("mycart")) && JSON.parse(localStorage.getItem("mycart")).uemail != objToken.user.uemail){
+      //localStorage.setItem("mycart", null)
+      localStorage.removeItem("mycart")
+    }
+>>>>>>> 358d14c3bd65828d5d29a260000579d1207a7129
     return (
       <>
         This is user profile page / we may change here to a component
@@ -125,7 +135,7 @@ function Login() {
                   />
                 </div>
 
-                <button
+                <button type="button"
                   id="login_button"
                   className="btn btn-block py-3"
                   onClick={btn_login}

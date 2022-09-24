@@ -13,26 +13,77 @@ function Cart() {
   let id = 14;
   const [items, setItems] = useState([]);
   const [total, setPrice] = useState(0);
+  const [number, setNumber] = useState(0);
 
   useEffect(() => {
     if(localStorage.getItem("mycart")) {
       let totalPrice = 0
+      let num = 0
       const list = JSON.parse(localStorage.getItem("mycart")).items
       list.forEach((item)=>{
-        totalPrice += parseInt(item.product.price)
+        totalPrice += parseInt(item.product.price) * parseInt(item.quantity)
+        num += parseInt(item.quantity)
       })
+      setNumber(num)
       setItems(list)
       setPrice(totalPrice)
     }
     
   }, []);
 
+  const btn_delete = (pid) => {
+    const obj = JSON.parse(localStorage.getItem("mycart"))
+    const list = obj.items
+    const rsList = []
+    let isEpt = true
+
+    list.forEach((item, i)=>{
+      if (item.product.pid != pid) {
+        rsList.push(item)
+        isEpt = false
+      }
+    })
+
+    if (isEpt) {
+      localStorage.setItem("mycart", "")
+    } else {
+      obj.items = rsList
+      localStorage.setItem("mycart", JSON.stringify(obj))
+    }
+
+    window.location.reload()
+  }
+
+  const btn_update = (pid, ctl) => {
+    if (parseInt(ctl.value) < 1) {
+      ctl.value = 1
+      return  
+    }
+
+    const obj = JSON.parse(localStorage.getItem("mycart"))
+    const list = obj.items
+
+    list.forEach((item, i)=>{
+      if (item.product.pid == pid) {
+        item.quantity = ctl.value
+      }
+    })
+
+    localStorage.setItem("mycart", JSON.stringify(obj))
+
+    window.location.reload()
+  }
+
+  if(number == 0) {
+    return ( <> <br/><div className='container'> <h1>Your cart is empty. </h1> </div> </ > )
+  }
+
   return (
     <>
       <div className="container container-fluid">
-        <h2 className="mt-5">
-          Your Cart: <b>2 items</b>
-        </h2>
+        <h3 className="mt-5">
+          Your Cart: <b>{number} items</b>
+        </h3>
         <div className="row d-flex justify-content-between">
 
 
@@ -59,17 +110,16 @@ function Cart() {
 
                 <div className="col-4 col-lg-3 mt-0 mt-lg-0 item_counter">
                   <div className="">
-                    <button className="btn minus">-</button>
                     <input
                       type="number"
-                      className="form-control counter d-inline"
-                      value={item.product.quantity}                    
+                      className="form-control counter d-inline" 
+                      defaultValue={item.quantity} 
+                      onChange={(e)=>btn_update(item.product.pid, e.target)}
                     />
-                    <button className="btn plus">+</button>
                   </div>
                 </div>
                 <div className="col-4 col-lg-1 mt-0 mt-lg-0">
-                  <button id="delete_cart_item"> Delete
+                  <button id="delete_cart_item"  onClick={()=>btn_delete(item.product.pid)}> Delete
                   </button>
                 </div>
               </div>
@@ -91,7 +141,11 @@ function Cart() {
                 <span className="order-summary-values">${Math.round(total * 115)/100}</span>
               </p>
               <hr />
-              <Link to="/shipping" id="checkout_btn" className="btn btn-primary btn-block">Check out</Link>             
+              {
+                (!sessionStorage.getItem("token") || sessionStorage.getItem("token") == "null") 
+                  ? <Link to="/login" className="btn btn-primary btn-block" id="checkout_btn">Login and Check out</Link>
+                  : <Link to="/shipping" id="checkout_btn" className="btn btn-primary btn-block">Check out</Link>
+              }        
             </div>
           </div>
         </div>

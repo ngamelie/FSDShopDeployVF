@@ -102,6 +102,19 @@ router.put("/update", config.isUser, async(req, res) => {
     
 })
 
+// -- update user info------------------------------------------------ //
+router.put("/updateUserInfo", config.isUser, async(req, res) => {
+    const obj = req.body
+    try {
+        const rs = await rep.updateUserInfo(obj)
+        res.send(rs)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
 
 
 module.exports = router;
