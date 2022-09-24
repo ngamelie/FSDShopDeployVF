@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component} from "react";
+import React, { useState, useEffect, Component } from "react";
 import { Link } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap";
@@ -9,26 +9,34 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 function Header() {
   const [keyWord, setKeyWord] = useState("");
   const [orderNum, setOrderNum] = useState(0);
-  const [uemail, setUemail] = useState("")
+  const [uemail, setUemail] = useState("");
 
   useEffect(() => {
-    if(localStorage.getItem("mycart")) {
-      const myCart = JSON.parse(localStorage.getItem("mycart"))
-      let num = 0
-      myCart.items.forEach((item)=>{
-        num += parseInt(item.quantity)
-      })
+    if (localStorage.getItem("mycart")) {
+      const myCart = JSON.parse(localStorage.getItem("mycart"));
+      let num = 0;
+      myCart.items.forEach((item) => {
+        num += parseInt(item.quantity);
+      });
 
       //setOrderNum( myCart.items.length)
-      setOrderNum( num )
+      setOrderNum(num);
     }
 
-    if(sessionStorage.getItem("token") && sessionStorage.getItem("token") != "null"){
-      const obj = JSON.parse(sessionStorage.getItem("token"))
-      const email = obj.user.uemail
-      setUemail(email)
+    if (
+      sessionStorage.getItem("token") &&
+      sessionStorage.getItem("token") != "null"
+    ) {
+      const obj = JSON.parse(sessionStorage.getItem("token"));
+      const email = obj.user.uemail;
+      setUemail(email);
     }
-  })
+  });
+
+  const btn_logoff = () => {
+    sessionStorage.setItem("token", null);
+    window.location.replace("/");
+  };
 
   return (
     <div>
@@ -36,7 +44,10 @@ function Header() {
         <div className="col-12 col-md-3">
           <div className="navbar-brand mx-3">
             <a href="/">
-              <img src={process.env.PUBLIC_URL + "/images/logo2.png"}  className="img-fluid logo" />
+              <img
+                src={process.env.PUBLIC_URL + "/images/logo2.png"}
+                className="img-fluid logo"
+              />
             </a>
           </div>
         </div>
@@ -46,32 +57,79 @@ function Header() {
               type="text"
               id="search_field"
               className="form-control"
-              placeholder="Enter Product Name ..." 
-              onChange={(e)=>{
-                setKeyWord(e.target.value)
+              placeholder="Enter Product Name ..."
+              onChange={(e) => {
+                setKeyWord(e.target.value);
               }}
             />
             <div className="input-group-append">
-            <a id="search_btn" className="btn" href={ keyWord.trim() == "" ? '/' : `/product/name/${keyWord}` }><FontAwesomeIcon icon={faSearch} /></a>  
+              <a
+                id="search_btn"
+                className="btn"
+                href={keyWord.trim() == "" ? "/" : `/product/name/${keyWord}`}
+              >
+                <FontAwesomeIcon icon={faSearch} />
+              </a>
             </div>
           </div>
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
-<<<<<<< HEAD
-          { (uemail == "" ) 
-=======
-          { (uemail=="") 
->>>>>>> 7fd66fd6c7bc229e256d56b40b876045e7e08004
-            ? <Link to="/login" className="btn" id="login_btn">Login</Link>
-            : <Link to="/user/profile">Welcome: {uemail}</Link> 
-          }
-          
-          <Link to="/shopping/cart"><span id="cart" className="ml-3">Cart</span></Link>
-          <span className="ml-1" id="cart_count">
-            {orderNum}
+          {uemail == "" ? (
+            <Link to="/login" className="btn" id="login_btn">
+              Login
+            </Link>
+          ) : (
+            <Link to="/user/profile">Welcome: {uemail}</Link>
+          )}
 
-          </span>
+          <Link to="/shopping/cart" className="btn">
+            <span id="cart" className="ml-3">
+              Cart
+            </span>
+            <span className="ml-1" id="cart_count">
+              {orderNum}
+            </span>
+          </Link>
+
+
+          {/* Ngan added for testing admin page */} 
+          
+          {uemail ? (
+            <div className="ml-4 dropdown d-inline">
+              <Link
+                to="#!"
+                className="btn dropdown-toggle text-white mr-4"
+                type="button"
+                id="dropDownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span>{uemail}</span>
+              </Link>
+
+              <div
+                className="dropdown-menu"
+                aria-labelledby="dropDownMenuButton"
+              >
+                <Link className="dropdown-item" to="/admin">
+                  Admin
+                </Link>
+                <Link
+                  className="dropdown-item text-danger"
+                  to="/"
+                  onClick={btn_logoff}
+                >
+                  Logout
+                </Link>
+              </div>
+            </div>
+          ) : (
+              <Link to="/login" className="btn ml-4" id="login_btn">
+                Login
+              </Link>            
+          )}
         </div>
       </nav>
     </div>

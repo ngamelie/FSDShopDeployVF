@@ -36,8 +36,8 @@ function Login() {
       const obj = rs.data;
       if (obj.isAuth == 1) {
         obj.isAuth = config().auth;
-        if(obj.user.role == 1) {
-          obj.user.role = config().admin
+        if (obj.user.role == 1) {
+          obj.user.role = config().admin;
         } else {
           obj.user.role = config().user;
         }
@@ -59,28 +59,29 @@ function Login() {
   if (objToken && objToken.isAuth.charAt(objToken.isAuth.length - 1) == "1") {
     return (
       <>
-      This is admin page / we may change here to a component
+        This is admin page / we may change here to a component
         <div className="form-group">
           Welcome: {JSON.parse(sessionStorage.getItem("token")).user.uemail}{" "}
           &nbsp;&nbsp;
         </div>
         <button className="btn btn-outline-secondary" onClick={btn_logoff}>
-          {" "}
-          Logoff{" "}
+          Logoff
         </button>
       </>
     );
-  } else if (objToken && objToken.isAuth.charAt(objToken.isAuth.length - 1) == "0") {
+  } else if (
+    objToken &&
+    objToken.isAuth.charAt(objToken.isAuth.length - 1) == "0"
+  ) {
     return (
       <>
-      This is user profile page / we may change here to a component
+        This is user profile page / we may change here to a component
         <div className="form-group">
           Welcome: {JSON.parse(sessionStorage.getItem("token")).user.uemail}{" "}
           &nbsp;&nbsp;
         </div>
         <button className="btn btn-outline-secondary" onClick={btn_logoff}>
-          {" "}
-          Logoff{" "}
+          Logoff
         </button>
       </>
     );
@@ -132,8 +133,8 @@ function Login() {
                   LOGIN
                 </button>
                 <div className="registerlink">
-                <Link to="/registration">New User?</Link>             
-                </div>                
+                  <Link to="/registration">New User?</Link>
+                </div>
               </form>
             </div>
           </div>
