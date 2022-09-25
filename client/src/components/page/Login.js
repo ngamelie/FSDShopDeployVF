@@ -63,9 +63,17 @@ function Login() {
       <Adminbar />
     );
   } else if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "0") {
-    if(localStorage.getItem("mycart") && JSON.parse(localStorage.getItem("mycart")) && JSON.parse(localStorage.getItem("mycart")).uemail != objToken.user.uemail){
+    if(localStorage.getItem("mycart") && JSON.parse(localStorage.getItem("mycart")) && JSON.parse(localStorage.getItem("mycart")).uemail != objToken.user.uemail && JSON.parse(localStorage.getItem("mycart")).uemail!=""){
       localStorage.removeItem("mycart")
     }
+
+    if(localStorage.getItem("mycart")){
+      const objCart = JSON.parse(localStorage.getItem("mycart"))
+      objCart.uemail = JSON.parse(sessionStorage.getItem("token")).user.uemail
+      localStorage.setItem("mycart", JSON.stringify(objCart))
+    }
+
+    
     return (
       <Userbar />
     );

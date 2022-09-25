@@ -23,9 +23,9 @@ function UserList() {
       <div className="admin_container">
         <div className="admin_wrapper">
           <div className="adminadditem">
-            <Link to="/product/admin/add" className="btn">
+            {/* <Link to="/product/admin/add" className="btn">
               <FontAwesomeIcon icon={faAdd} className="adminicon" /> Add
-            </Link>
+            </Link> */}
           </div>
           <div className="row">
             <div className="col-md-12">

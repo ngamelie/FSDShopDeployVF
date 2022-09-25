@@ -23,9 +23,9 @@ function OrderList() {
       <div className="admin_container">
         <div className="admin_wrapper">
           <div className="adminadditem">
-            <Link to="/product/admin/add" className="btn">
+            {/* <Link to="/product/admin/add" className="btn">
               <FontAwesomeIcon icon={faAdd} className="adminicon" /> Add
-            </Link>
+            </Link> */}
           </div>
           <div className="row">
             <div className="col-md-12">
@@ -47,7 +47,7 @@ function OrderList() {
                       <td>{item.status ? "Received": "In processing"}</td>
                       <td>{item.odate.substring(0, 10)}</td>
                       <td>
-                        <Link to={`/product/admin/edit/${item.id}`}>
+                        {/* <Link to={`/product/admin/edit/${item.id}`}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             className="adminicon"
@@ -58,7 +58,7 @@ function OrderList() {
                             icon={faRemove}
                             className="adminicon"
                           />
-                        </Link>
+                        </Link> */}
                       </td>
                     </tr>
                   ))}

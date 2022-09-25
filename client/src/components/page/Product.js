@@ -24,7 +24,7 @@ function Product() {
       setProduct(rs.data);
     });
 
-    if(sessionStorage.getItem("token")){
+    if(sessionStorage.getItem("token") && sessionStorage.getItem("token") != "null"){
       const email = JSON.parse(sessionStorage.getItem("token")).user.uemail
       setUemail(email)
     }
