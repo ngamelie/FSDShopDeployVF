@@ -74,23 +74,14 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 rightheader">
-          {uemail == "" ? (
-            <Link to="/login" className="btn" id="login_btn">
-              Login
-            </Link>
-          ) : (
-            <Link to="/user/profile">Welcome: {uemail}</Link>
-          )}
-
           <Link to="/shopping/cart" className="btn">
             <span id="cart" className="ml-3">
               Cart
             </span>
             <span className="ml-1" id="cart_count">
-              {orderNum}
+              { orderNum } 
             </span>
           </Link>
-
 
           {/* Ngan added for testing admin page */} 
           
@@ -112,9 +103,11 @@ function Header() {
                 className="dropdown-menu"
                 aria-labelledby="dropDownMenuButton"
               >
-                <Link className="dropdown-item" to="/admin">
-                  Admin
-                </Link>
+                {JSON.parse(sessionStorage.getItem("token")).user.role.charAt(JSON.parse(sessionStorage.getItem("token")).user.role.length-1)=="1"
+                  ? <><Link className="dropdown-item" to="/admin"> Admin  </Link></>
+                  : null
+                }
+                
                 <Link
                   className="dropdown-item text-danger"
                   to="/"
