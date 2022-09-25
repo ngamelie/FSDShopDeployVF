@@ -22,6 +22,7 @@ import Axios from "axios";
 
 import "../../asset/common/Style.css";
 import config from "../config/Config";
+import Adminbar from "../../components/admin/Adminbar"
 
 function Login() {
   const PATH = config().path;
@@ -36,8 +37,8 @@ function Login() {
       const obj = rs.data;
       if (obj.isAuth == 1) {
         obj.isAuth = config().auth;
-        if (obj.user.role == 1) {
-          obj.user.role = config().admin;
+        if(obj.user.role == 1) {
+          obj.user.role = config().admin
         } else {
           obj.user.role = config().user;
         }
@@ -56,35 +57,26 @@ function Login() {
   };
 
   const objToken = JSON.parse(sessionStorage.getItem("token"));
-  if (
-    objToken &&
-    objToken.user.role.charAt(objToken.isAuth.length - 1) == "1"
-  ) {
+  if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "1") {
     return (
       <>
-        This is admin page / we may change here to a component
-        <div className="form-group">
-          Welcome: {JSON.parse(sessionStorage.getItem("token")).user.uemail}{" "}
-          &nbsp;&nbsp;
-        </div>
-        <button className="btn btn-outline-secondary" onClick={btn_logoff}>
-          Logoff
-        </button>
+      <Adminbar />
       </>
     );
-  } else if (
-    objToken &&
-    objToken.isAuth.charAt(objToken.isAuth.length - 1) == "0"
-  ) {
+  } else if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "0") {
+    if(localStorage.getItem("mycart") && JSON.parse(localStorage.getItem("mycart")) && JSON.parse(localStorage.getItem("mycart")).uemail != objToken.user.uemail){
+      localStorage.removeItem("mycart")
+    }
     return (
       <>
-        This is user profile page / we may change here to a component
+      This is user profile page / we may change here to a component
         <div className="form-group">
           Welcome: {JSON.parse(sessionStorage.getItem("token")).user.uemail}{" "}
           &nbsp;&nbsp;
         </div>
         <button className="btn btn-outline-secondary" onClick={btn_logoff}>
-          Logoff
+          {" "}
+          Logoff{" "}
         </button>
       </>
     );
@@ -128,8 +120,7 @@ function Login() {
                   />
                 </div>
 
-                <button
-                  type="button"
+                <button type="button"
                   id="login_button"
                   className="btn btn-block py-3"
                   onClick={btn_login}
@@ -137,8 +128,8 @@ function Login() {
                   LOGIN
                 </button>
                 <div className="registerlink">
-                  <Link to="/registration">New User?</Link>
-                </div>
+                <Link to="/registration">New User?</Link>             
+                </div>                
               </form>
             </div>
           </div>

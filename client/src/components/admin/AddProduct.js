@@ -1,21 +1,33 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import Axios from "axios";
 import Adminbar from "./Adminbar";
+
+import config from "../config/Config";
+const PATH = config().path;
 
 function AddProduct() {
   const [categories, setCategories] = useState([]);
 
   const name = useRef("");
-  const price = useRef(0);
-  const description = useRef("");
+  // const price = useRef(0);
+  // const description = useRef("");
   const rating = useRef(0);
   const category = useRef(0);
   const user = useRef(0);
   const image = useRef("");
 
+  // Zeen add parameters
+  const [cid, setCid] = useState(0);
+  const [pname, setPname] = useState("");
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
+  const [rate, setRate] = useState(0);
+  const [img, setImg] = useState("");
+
+  
   useEffect(() => {
-    axios.get("http://localhost:3001/category/").then((response) => {
+    Axios.get(PATH + "/category/").then((response) => {
       setCategories(response.data);
     });
 
@@ -28,16 +40,16 @@ function AddProduct() {
   let navigate = useNavigate();
 
   const submitHandler = (e) => {
-    e.preventDefault(); // Now nothing will happen
-    axios.post("http://localhost:3001/product/", {
-      cid: category.current.value,
-      uid: 1,
-      pname: name.current.value,
-      price: price.current.value,
-      description: description.current.value,
-      img: image.current.value,
-      rate: rating.current.value,
-    });
+    // e.preventDefault(); // Now nothing will happen
+    // Axios.post(PATH + "/product/", {
+    //   cid: category.current.value,
+    //   uid: 1,
+    //   pname: name.current.value,
+    //   price: price.current.value,
+    //   description: description.current.value,
+    //   img: image.current.value,
+    //   rate: rating.current.value,
+    // });
 
    // console.log(category.current.value);
    // console.log(user.current.value);
@@ -49,6 +61,27 @@ function AddProduct() {
 
    //   navigate("/");
   };
+
+
+  const btn_create = ()=>{
+    if (isVerified()) {
+      Axios.post(PATH + "/product", {
+        "cid" : cid,
+        "uid": JSON.parse(sessionStorage.getItem("token")).user.uid,
+        "pname": pname,
+        "price" : price,
+        "description" : description,
+        "img" : img,
+        "rate" : rate
+      }, {headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
+        alert("New product created.")
+      });
+    }
+  }
+
+  function isVerified(){
+    return true
+  }
 
   return (
     <>
@@ -65,49 +98,64 @@ function AddProduct() {
               <div className="form-group">
                 <label htmlFor="name_field">Name</label>
                 <input
-                  ref={name}
+                  
                   type="text"
                   id="name_field"
                   className="form-control"
+                  onChange={(e) => {
+                    setPname(e.target.value);
+                  }}
                 />
               </div>
 
               <div className="form-group">
                 <label htmlFor="price_field">Price</label>
                 <input
-                  ref={price}
+                  
                   type="number"
                   id="price_field"
                   className="form-control"
+                  onChange={(e) => {
+                    setPrice(e.target.value);
+                  }}
                 />
               </div>
 
               <div className="form-group">
                 <label htmlFor="description_field">Description</label>
                 <textarea
-                  ref={description}
+                  
                   className="form-control"
                   id="description_field"
                   rows="3"
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
                 ></textarea>
               </div>
 
               <div className="form-group">
                 <label htmlFor="rating_field">Rating</label>
                 <input
-                  ref={rating}
+                  
                   type="number"
                   id="rating_field"
                   className="form-control"
+                  onChange={(e) => {
+                    setRate(e.target.value);
+                  }}
                 />
               </div>
 
               <div className="form-group">
                 <label htmlFor="category_field">Category</label>
                 <select
-                  ref = {category}
+                  
                   className="form-control"
                   id="category_field"
+                  onChange={(e) => {
+                    setCid(e.target.value);
+                  }}
                 >
                   {categories.map((cat) => (
                     <option key={cat.id} value={cat.cid}>
@@ -120,7 +168,7 @@ function AddProduct() {
               <div className="form-group">
                 <label htmlFor="user_field">User</label>
                 <input
-                  ref={user}
+                  
                   type="number"
                   id="user_field"
                   className="form-control"
@@ -145,10 +193,13 @@ function AddProduct() {
               <div className="form-group">
                 <label htmlFor="rating_field">Image</label>
                 <input
-                  ref={image}
+                  
                   type="text"
                   id="image_field"
                   className="form-control"
+                  onChange={(e) => {
+                    setImg(e.target.value);
+                  }}
                 />
               </div>
 
@@ -157,11 +208,12 @@ function AddProduct() {
 
                 <div className="custom-file">
                   <input
-                    ref={image}
+                    
                     type="text"
                     name="product_images"
                     className="custom-file-input"
                     id="customFile"
+                    
                   />
                   <label className="custom-file-label" htmlFor="customFile">
                     Choose Images
@@ -171,8 +223,9 @@ function AddProduct() {
 
               <button
                 id="login_button"
-                type="submit"
+                type="button"
                 className="btn btn-block py-3"
+                onClick={btn_create}
               >
                 CREATE
               </button>

@@ -17,7 +17,7 @@ const config = require('../../config/config');
 router.use(cors())
 router.use(express.json())
 router.use(cors())
-router.use(session({secret: 'ssshhh'}))
+//router.use(session({secret: 'ssshhh'}))
 
 
 
