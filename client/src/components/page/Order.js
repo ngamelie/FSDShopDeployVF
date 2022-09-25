@@ -10,11 +10,11 @@ import config from "../config/Config";
 const PATH = config().path + "/order";
 
 function Checkout() {
-  // for testing
-  let id = 14;
   const [product, setProduct] = useState([]);
   const [total, setPrice] = useState(0);
   const [number, setNumber] = useState(0);
+  const [items, setItems] = useState([]);
+  const [uid, setUid] = useState(0);
 
   useEffect(() => {
     if(localStorage.getItem("mycart")) {
@@ -28,7 +28,21 @@ function Checkout() {
       setNumber(num)
       setPrice(totalPrice)
     }
+
+    setItems(JSON.parse(localStorage.getItem("mycart")).items)
+    setUid(JSON.parse(sessionStorage.getItem("token")).user.uid)
   }, []);
+
+  const btn_payment = ()=>{
+    Axios.post(PATH + "/", {
+      uid: uid,
+      status: 0,
+      items: items
+    }, {headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
+      window.location.replace("/payment")
+    });
+    
+  }
 
   return (
     <>
@@ -96,13 +110,14 @@ function Checkout() {
                 Total: <span className="order-summary-values">${Math.round(total*115)/100}</span>
               </p>{" "}
               <hr />
-              <Link
+              <button
                 to="/payment"
                 id="checkout_btn"
                 className="btn btn-primary btn-block"
+                onClick={btn_payment}
               >
                 Proceed to Payment
-              </Link>
+              </button>
             </div>
           </div>
         </div>

@@ -33,12 +33,12 @@ const rep = {
         + " (oid, pid, quantity, pname, price, description, img) values (?, ? ,? ,? ,? ,?, ?)"
         const [rs] = await db.query(sql, [
             obj.oid,
-            obj.pid,
+            obj.product.pid,
             obj.quantity,
-            obj.pname,
-            obj.price,
-            obj.description,
-            obj.img
+            obj.product.pname,
+            obj.product.price,
+            obj.product.description,
+            obj.product.img
         ])
 
         return rs

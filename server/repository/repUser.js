@@ -4,7 +4,7 @@
  */
 const database = require('../config/db');
 const db = database.db
-const tbl = "user"
+const tbl = "`user`"
 
 const rep = {
 

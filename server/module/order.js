@@ -10,6 +10,7 @@ const cors = require("cors")
 
 // module
 const rep = require ('../repository/repOrder')
+const repItem = require ('../repository/repItem')
 const config = require('../config/config');
 // app init
 router.use(cors())
@@ -17,7 +18,7 @@ router.use(express.json())
 router.use(cors())
 
 // -- get all------------------------------------------------ //
-router.get("/", config.isAdmin, async(req, res) => {
+router.get("/", async(req, res) => {
 
     try {
         const obj = await rep.getAll()
@@ -30,12 +31,17 @@ router.get("/", config.isAdmin, async(req, res) => {
 })
 
 // -- new one ---------------------------------------- //
-router.post("/", config.isUser, (req, res) => {
+router.post("/", config.isUser, async(req, res) => {
+    
     const obj = req.body   
-
     try {
-        rep.newOne(obj)
-        res.send("New category has been created.")
+        await rep.newOne(obj)
+        const rs = await rep.getLastOidByUid(obj.uid)
+        obj.items.forEach(item => {
+            item.oid = rs[0].oid
+            repItem.newOne(item)
+        });
+        res.send("Order in processing.")
     } catch (e) {
         console.error('error is:', e.message);
         res.send(e.message)

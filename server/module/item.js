@@ -35,7 +35,7 @@ router.post("/", config.isUser, (req, res) => {
 
     try {
         rep.newOne(obj)
-        res.send("New category has been created.")
+        res.send("New order item has been saved.")
     } catch (e) {
         console.error('error is:', e.message);
         res.send(e.message)

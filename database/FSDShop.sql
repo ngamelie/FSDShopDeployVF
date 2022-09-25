@@ -50,7 +50,7 @@ CREATE TABLE `order_item` (
   `oid` int NOT NULL,
   `pid` int NOT NULL,
   `quantity` smallint not null,
-  `pname` smallint not null,
+  `pname` varchar(100) not null,
   `price` decimal(15,2),
   `description` varchar(1000),
   `img` varchar(100)
