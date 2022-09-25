@@ -30,6 +30,17 @@ const rep = {
         }
     },
 
+    getByUid: async function (id){
+        try{
+            const sql = "select * from " + tbl + " where uid = ?"
+            const [rs] = await db.query(sql, [id])
+            return rs
+        } catch (e) {
+            console.error('============ error is:', e.message);
+            return
+        }
+    },
+
     getLastOidByUid: async function (id){
         try{
             const sql = "select max(oid) as oid from " + tbl + " where uid = ?"

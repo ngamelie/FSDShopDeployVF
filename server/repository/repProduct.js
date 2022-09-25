@@ -90,6 +90,17 @@ const rep = {
         }
     },
 
+    getByUid: async function (id){
+        try{
+            const sql = "select * from " + tbl + " where uid = ?"
+            const [rs] = await db.query(sql, [id])
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
+    },
+
     delOne: async function (id){
         try{
             const sql = "delete from " + tbl + " where pid = ?"
@@ -105,9 +116,10 @@ const rep = {
     newOne: async function (obj){
         try{
             const sql = "insert into " + tbl 
-            + " (cid, pname, price, description, img, rate) values (?, ? ,? ,? ,? ,?)"
+            + " (cid, uid, pname, price, description, img, rate) values (?, ?, ? ,? ,? ,? ,?)"
             const [rs] = await db.query(sql, [
                 obj.cid,
+                obj.uid,
                 obj.pname,
                 obj.price,
                 obj.description,

@@ -138,6 +138,19 @@ router.get("/:id", async(req, res) => {
     
 })
 
+// -- get By Uid ------------------------------------------------ //
+router.get("/uid/:id", async(req, res) => {
+    const id = req.params.id
+    try {
+        const obj = await rep.getByUid(id)
+        res.send(obj)
+    } catch (e) {
+        console.error('error is:', e.message);
+        res.send()
+    }
+    
+})
+
 // -- delete ------------------------------------------------ //
 router.delete("/del/:id", config.isUser, async(req, res) => {
     const id = req.params.id

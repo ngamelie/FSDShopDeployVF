@@ -24,12 +24,15 @@ function AddProduct() {
   const [description, setDescription] = useState("");
   const [rate, setRate] = useState(0);
   const [img, setImg] = useState("");
+  const [uid, setUid] = useState(0);
 
   
   useEffect(() => {
     Axios.get(PATH + "/category/").then((response) => {
       setCategories(response.data);
     });
+//alert(JSON.parse(sessionStorage.getItem("token")).user.uid)
+    setUid(JSON.parse(sessionStorage.getItem("token")).user.uid)
 
     // axios.get("http://localhost:3001/login/user/users").then((response) => {
     //    setUser(response.data);
@@ -67,7 +70,7 @@ function AddProduct() {
     if (isVerified()) {
       Axios.post(PATH + "/product", {
         "cid" : cid,
-        "uid": JSON.parse(sessionStorage.getItem("token")).user.uid,
+        "uid": uid,
         "pname": pname,
         "price" : price,
         "description" : description,

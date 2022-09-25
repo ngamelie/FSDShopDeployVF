@@ -91,11 +91,15 @@ function Home() {
           ))}
         </div>
         <hr />
-        <h5 className="subtitle">Prices</h5>
+
+
+        {/* <h5 className="subtitle">Prices</h5>
         <div className="price">
           From <input type="number" size="2" name="fprice" />
           To <input type="number" size="5" name="toprice" />
-        </div>
+        </div> */}
+
+
       </div>
 
       <div className="col-10">

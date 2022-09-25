@@ -23,6 +23,7 @@ import Axios from "axios";
 import "../../asset/common/Style.css";
 import config from "../config/Config";
 import Adminbar from "../../components/admin/Adminbar"
+import Userbar from "../login/Userbar"
 
 function Login() {
   const PATH = config().path;
@@ -59,26 +60,14 @@ function Login() {
   const objToken = JSON.parse(sessionStorage.getItem("token"));
   if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "1") {
     return (
-      <>
       <Adminbar />
-      </>
     );
   } else if (objToken && objToken.user.role.charAt(objToken.isAuth.length - 1) == "0") {
     if(localStorage.getItem("mycart") && JSON.parse(localStorage.getItem("mycart")) && JSON.parse(localStorage.getItem("mycart")).uemail != objToken.user.uemail){
       localStorage.removeItem("mycart")
     }
     return (
-      <>
-      This is user profile page / we may change here to a component
-        <div className="form-group">
-          Welcome: {JSON.parse(sessionStorage.getItem("token")).user.uemail}{" "}
-          &nbsp;&nbsp;
-        </div>
-        <button className="btn btn-outline-secondary" onClick={btn_logoff}>
-          {" "}
-          Logoff{" "}
-        </button>
-      </>
+      <Userbar />
     );
   } else {
     return (

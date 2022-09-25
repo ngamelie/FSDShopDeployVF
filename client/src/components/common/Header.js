@@ -104,8 +104,8 @@ function Header() {
                 aria-labelledby="dropDownMenuButton"
               >
                 {JSON.parse(sessionStorage.getItem("token")).user.role.charAt(JSON.parse(sessionStorage.getItem("token")).user.role.length-1)=="1"
-                  ? <><Link className="dropdown-item" to="/admin"> Admin  </Link></>
-                  : null
+                  ? <><Link className="dropdown-item" to="/admin"> My FSD  </Link></>
+                  : <><Link className="dropdown-item" to="/user">  My FSD   </Link></>
                 }
                 
                 <Link
