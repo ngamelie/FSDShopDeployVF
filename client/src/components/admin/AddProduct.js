@@ -99,7 +99,7 @@ function AddProduct() {
               <h1 className="mb-4">New Product</h1>
 
               <div className="form-group">
-                <label htmlFor="name_field">Name</label>
+                <label htmlFor="name_field">Product Name</label>
                 <input
                   
                   type="text"
@@ -168,16 +168,6 @@ function AddProduct() {
                 </select>
               </div>
 
-              <div className="form-group">
-                <label htmlFor="user_field">User</label>
-                <input
-                  
-                  type="number"
-                  id="user_field"
-                  className="form-control"
-                />
-              </div>
-
               {/* <div className="form-group">
                 <label htmlFor="user_field">User</label>
                 <select
@@ -206,7 +196,7 @@ function AddProduct() {
                 />
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Images</label>
 
                 <div className="custom-file">
@@ -222,7 +212,7 @@ function AddProduct() {
                     Choose Images
                   </label>
                 </div>
-              </div>
+              </div> */}
 
               <button
                 id="login_button"
