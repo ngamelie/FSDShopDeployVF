@@ -9,50 +9,71 @@ const tbl = "review"
 const rep = {
 
     getAll: async function (){
-        const sql = "select * from " + tbl
-        const [rs] = await db.query(sql)
-        return rs
-
+        try{
+            const sql = "select * from " + tbl
+            const [rs] = await db.query(sql)
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     getOne: async function (id){
-        const sql = "select * from " + tbl + " where rid = ?"
-        const [rs] = await db.query(sql, [id])
-        return rs[0]
+        try{
+            const sql = "select * from " + tbl + " where rid = ?"
+            const [rs] = await db.query(sql, [id])
+            return rs[0]
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     delOne: async function (id){
-        const sql = "delete from " + tbl + " where rid = ?"
-        const [rs] = await db.query(sql,[id])
-        return rs
+        try{
+            const sql = "delete from " + tbl + " where rid = ?"
+            const [rs] = await db.query(sql,[id])
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
 
     newOne: async function (obj){
-        const sql = "insert into " + tbl 
-        + " (uid, pid, text, date) values (?, ? ,?, ?)"
-        const [rs] = await db.query(sql, [
-            obj.uid,
-            obj.pid,
-            obj.text,
-            obj.date
-        ])
-
-        return rs
+        try{
+            const sql = "insert into " + tbl 
+            + " (uid, pid, text, date) values (?, ? ,?, CURDATE())"
+            const [rs] = await db.query(sql, [
+                obj.uid,
+                obj.pid,
+                obj.text
+            ])
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     updateOne: async function (obj){
-        const sql = "update " + tbl 
-            + " set uid = ?, pid = ?, text = ?, date = ? where rid = ?"
-           
-        const [rs] = await db.query(sql, [
-            obj.uid,
-            obj.pid,
-            obj.text,
-            obj.date,
-            obj.rid
-        ]) 
-        return rs
+        try{
+            const sql = "update " + tbl 
+                + " set uid = ?, pid = ?, text = ?, date = CURDATE() where rid = ?"
+            
+            const [rs] = await db.query(sql, [
+                obj.uid,
+                obj.pid,
+                obj.text,
+                obj.rid
+            ]) 
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     }
 
 

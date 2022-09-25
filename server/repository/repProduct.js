@@ -9,88 +9,138 @@ const tbl = "product"
 const rep = {
 
     getAll: async function (from, n){
-        const sql = "select * from " + tbl
-        const [rs] = await db.query(sql, [from, n])
-        return rs
+        try{
+            const sql = "select * from " + tbl
+            const [rs] = await db.query(sql, [from, n])
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
 
     },
 
     getPageAll: async function (from, n){
-        const sql = "select * from " + tbl + " limit ?, ?" 
-        const [rs] = await db.query(sql, [from, n])
-        return rs
+        try{
+            const sql = "select * from " + tbl + " limit ?, ?" 
+            const [rs] = await db.query(sql, [from, n])
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
 
     },
 
     getSearch: async function (key, value){
-        const sql = "select * from " + tbl + " where ? like ?;"
-        let v = "%" + value + "%"
-        const [rs] = await db.query(sql, [key, v])
-        return rs
+        try{
+            const sql = "select * from " + tbl + " where ? like ?;"
+            let v = "%" + value + "%"
+            const [rs] = await db.query(sql, [key, v])
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     getNameSearch: async function (key, from, num){
-        const sql = "select * from " + tbl + " where pname like ? limit ? , ? ;"
-        let v = "%" + key + "%"
-        const [rs] = await db.query(sql, [v, from, num])
-        return rs
+        try{
+            const sql = "select * from " + tbl + " where pname like ? limit ? , ? ;"
+            let v = "%" + key + "%"
+            const [rs] = await db.query(sql, [v, from, num])
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     getNameSearchNum: async function (key){
-        const sql = "select * from " + tbl + " where pname like ?"
-        let v = "%" + key + "%"
-        const [rs] = await db.query(sql, v)
-        return rs
+        try{
+            const sql = "select * from " + tbl + " where pname like ?"
+            let v = "%" + key + "%"
+            const [rs] = await db.query(sql, v)
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     getByCategory: async function (cid){
-        const sql = "select * from " + tbl + " where cid = ?"
-        const [rs] = await db.query(sql, cid)
-        return rs
+        try{
+            const sql = "select * from " + tbl + " where cid = ?"
+            const [rs] = await db.query(sql, cid)
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     getOne: async function (id){
-        const sql = "select * from " + tbl + " where pid = ?"
-        const [rs] = await db.query(sql, [id])
-        return rs[0]
+        try{
+            const sql = "select * from " + tbl + " where pid = ?"
+            const [rs] = await db.query(sql, [id])
+            return rs[0]
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     delOne: async function (id){
-        const sql = "delete from " + tbl + " where pid = ?"
-        const [rs] = await db.query(sql,[id])
-        return rs
+        try{
+            const sql = "delete from " + tbl + " where pid = ?"
+            const [rs] = await db.query(sql,[id])
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
 
     newOne: async function (obj){
-        const sql = "insert into " + tbl 
-        + " (cid, pname, price, description, img, rate) values (?, ? ,? ,? ,? ,?)"
-        const [rs] = await db.query(sql, [
-            obj.cid,
-            obj.pname,
-            obj.price,
-            obj.description,
-            obj.img,
-            obj.rate
-        ])
+        try{
+            const sql = "insert into " + tbl 
+            + " (cid, pname, price, description, img, rate) values (?, ? ,? ,? ,? ,?)"
+            const [rs] = await db.query(sql, [
+                obj.cid,
+                obj.pname,
+                obj.price,
+                obj.description,
+                obj.img,
+                obj.rate
+            ])
 
-        return rs
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     },
 
     updateOne: async function (obj){
-        const sql = "update " + tbl 
-            + " set cid = ?, pname = ?, price = ?, description = ?, img = ?, rate = ?, where pid = ?"
-           
-        const [rs] = await db.query(sql, [
-            obj.cid,
-            obj.pname,
-            obj.price,
-            obj.description,
-            obj.img,
-            obj.rate,
-            obj.pid
-        ]) 
-        return rs
+        try{
+            const sql = "update " + tbl 
+                + " set cid = ?, pname = ?, price = ?, description = ?, img = ?, rate = ?, where pid = ?"
+            
+            const [rs] = await db.query(sql, [
+                obj.cid,
+                obj.pname,
+                obj.price,
+                obj.description,
+                obj.img,
+                obj.rate,
+                obj.pid
+            ]) 
+            return rs
+        } catch (e) {
+            console.error('============  error is:', e.message);
+            return
+        }
     }
 
 

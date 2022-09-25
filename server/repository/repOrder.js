@@ -14,7 +14,7 @@ const rep = {
             const [rs] = await db.query(sql)
             return rs
         } catch (e) {
-            console.error('error is:', e.message);
+            console.error('=========== error is:', e.message);
             return
         }
     },
@@ -25,7 +25,7 @@ const rep = {
             const [rs] = await db.query(sql, [id])
             return rs[0]
         } catch (e) {
-            console.error('error is:', e.message);
+            console.error('============ error is:', e.message);
             return
         }
     },
@@ -36,7 +36,7 @@ const rep = {
             const rs = await db.query(sql, [id])
             return rs[0]
         } catch (e) {
-            console.error('error is:', e.message);
+            console.error('============  error is:', e.message);
             return
         }
     },
@@ -47,7 +47,7 @@ const rep = {
             const [rs] = await db.query(sql,[id])
             return rs
         } catch (e) {
-            console.error('error is:', e.message);
+            console.error('============  error is:', e.message);
             return
         }
     },
@@ -64,7 +64,7 @@ const rep = {
 
             return rs
         } catch (e) {
-            console.error('error is:', e.message);
+            console.error('============  error is:', e.message);
             return
         }
     },
@@ -83,7 +83,7 @@ const rep = {
             ]) 
             return rs
         } catch (e) {
-            console.error('error is:', e.message);
+            console.error('============  error is:', e.message);
             return
         }
     }
