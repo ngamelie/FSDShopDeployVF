@@ -34,6 +34,12 @@ function Checkout() {
         window.location.replace("/order")
       });
     }
+
+    const objCart = JSON.parse(localStorage.getItem("mycart"))
+    objCart.address = add1
+    objCart.city = add2
+    objCart.phone1 = phone1
+    localStorage.setItem("mycart",JSON.stringify(objCart))
   }
   
   function isVerified() {

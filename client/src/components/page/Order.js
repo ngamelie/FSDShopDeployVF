@@ -57,7 +57,7 @@ function Checkout() {
               <b>Email:</b> {JSON.parse(localStorage.getItem("mycart")).uemail}
             </p>
             <p>
-              <b>Phone:</b> {JSON.parse(localStorage.getItem("mycart")).phone}
+              <b>Phone:</b> {JSON.parse(localStorage.getItem("mycart")).phone1}
             </p>
             <p className="mb-4">
               <b>Address:</b> {JSON.parse(localStorage.getItem("mycart")).address}
