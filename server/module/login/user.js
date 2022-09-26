@@ -8,7 +8,7 @@ const express = require("express")
 const router = require('express').Router();
 const bodyParser = require("body-parser")
 const cors = require("cors")
-const bcrypt = require('bcrypt')
+const bcryptjs = require('bcryptjs')
 const session = require('express-session');
 // module
 const rep = require ('../../repository/repUser')
@@ -41,7 +41,7 @@ router.post("/", (req, res) => {
         return
     }
 
-    bcrypt.hash(obj.pword, 10, (err, hash) => {
+    bcryptjs.hash(obj.pword, 10, (err, hash) => {
         if (err) {
             console.log(err)
             return
