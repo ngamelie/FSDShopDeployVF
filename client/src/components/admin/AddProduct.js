@@ -78,6 +78,7 @@ function AddProduct() {
         "rate" : rate
       }, {headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
         alert("New product created.")
+        window.location.replace("/login/products")
       });
     }
   }

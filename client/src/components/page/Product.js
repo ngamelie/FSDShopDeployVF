@@ -62,7 +62,7 @@ function Product() {
      
     //setMsg("Product add to cart.")
     alert("Product add to cart.")
-    window.location.reload()
+    window.location.replace("/")
   }
 
   return (
