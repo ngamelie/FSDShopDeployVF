@@ -44,7 +44,7 @@ function Login() {
           obj.user.role = config().user;
         }
         sessionStorage.setItem("token", JSON.stringify(obj));
-        alert("Welcome.");
+        //alert("Welcome.");
         window.location.reload();
       } else {
         alert("Incorrect username or password.");

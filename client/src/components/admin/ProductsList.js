@@ -3,7 +3,7 @@ import Axios from "axios"; // used to call API
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faRemove, faAdd } from "@fortawesome/free-solid-svg-icons";
-
+import ForbiddenPage from "../../components/common/ForbiddenPage"
 import Adminbar from "./Adminbar";
 import config from "../config/Config";
 const PATH = config().path;
@@ -16,6 +16,10 @@ function ProductsList() {
       setProductList(response.data);
     });
   }, []);
+
+  if( !sessionStorage.getItem("token") || (JSON.parse(sessionStorage.getItem("token")).user.role).charAt(JSON.parse(sessionStorage.getItem("token")).user.role.length - 1) != "1") {
+    return <> <ForbiddenPage /></>
+  }
 
   return (
     <>

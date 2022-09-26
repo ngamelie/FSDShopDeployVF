@@ -3,7 +3,7 @@ import Axios from "axios"; // used to call API
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faRemove, faAdd } from "@fortawesome/free-solid-svg-icons";
-
+import ForbiddenPage from "../../components/common/ForbiddenPage"
 import Adminbar from "./Adminbar";
 import config from "../config/Config";
 const PATH = config().path;
@@ -12,10 +12,16 @@ function UserList() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    Axios.get(PATH + "/login/user",{headers:{token: sessionStorage.getItem("token")}}).then((response) => {
-      setList(response.data);
-    });
+    if( sessionStorage.getItem("token")) {
+      Axios.get(PATH + "/login/user",{headers:{token: sessionStorage.getItem("token")}}).then((response) => {
+        setList(response.data);
+      });
+    }
   }, []);
+
+  if( !sessionStorage.getItem("token") || sessionStorage.getItem("token") == "" || sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null) {
+    return <> <ForbiddenPage /></>
+  } 
 
   return (
     <>

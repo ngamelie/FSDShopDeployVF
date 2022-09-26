@@ -7,6 +7,7 @@ import StepCheckout from "../common/StepCheckout";
 import Axios from "axios";
 import "../../asset/common/Style.css";
 import config from "../config/Config";
+import ForbiddenPage from "../../components/common/ForbiddenPage"
 const PATH = config().path + "/order";
 
 function Checkout() {
@@ -30,7 +31,10 @@ function Checkout() {
     }
 
     setItems(JSON.parse(localStorage.getItem("mycart")).items)
-    setUid(JSON.parse(sessionStorage.getItem("token")).user.uid)
+    if(sessionStorage.getItem("token")) {
+      setUid(JSON.parse(sessionStorage.getItem("token")).user.uid)
+    } 
+    
   }, []);
 
   const btn_payment = ()=>{
@@ -43,6 +47,10 @@ function Checkout() {
     });
     
   }
+
+  if( !sessionStorage.getItem("token") || sessionStorage.getItem("token") == "" || sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null) {
+    return <> <ForbiddenPage /></>
+  } 
 
   return (
     <>

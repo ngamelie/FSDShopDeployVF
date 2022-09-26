@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import Adminbar from "./Adminbar";
-
+import ErrPage from "../../components/common/ErrPage"
+import ForbiddenPage from "../../components/common/ForbiddenPage"
 import config from "../config/Config";
 const PATH = config().path;
 
@@ -26,45 +27,17 @@ function AddProduct() {
   const [img, setImg] = useState("");
   const [uid, setUid] = useState(0);
 
-  
+
   useEffect(() => {
     Axios.get(PATH + "/category/").then((response) => {
       setCategories(response.data);
     });
-//alert(JSON.parse(sessionStorage.getItem("token")).user.uid)
-    setUid(JSON.parse(sessionStorage.getItem("token")).user.uid)
 
-    // axios.get("http://localhost:3001/login/user/users").then((response) => {
-    //    setUser(response.data);
-    //    console.log(response.data);
-    // });
+    if( sessionStorage.getItem("token") && sessionStorage.getItem("token") != "" && sessionStorage.getItem("token") != "null" || sessionStorage.getItem("token") != null) {
+      setUid(JSON.parse(sessionStorage.getItem("token")).user.uid) 
+    } 
+    
   }, []);
-
-  let navigate = useNavigate();
-
-  const submitHandler = (e) => {
-    // e.preventDefault(); // Now nothing will happen
-    // Axios.post(PATH + "/product/", {
-    //   cid: category.current.value,
-    //   uid: 1,
-    //   pname: name.current.value,
-    //   price: price.current.value,
-    //   description: description.current.value,
-    //   img: image.current.value,
-    //   rate: rating.current.value,
-    // });
-
-   // console.log(category.current.value);
-   // console.log(user.current.value);
-   // console.log(name.current.value);
-   // console.log(price.current.value);
-   // console.log(description.current.value);
-   // console.log(image.current.value);
-   // console.log(rating.current.value);
-
-   //   navigate("/");
-  };
-
 
   const btn_create = ()=>{
     if (isVerified()) {
@@ -87,6 +60,10 @@ function AddProduct() {
     return true
   }
 
+  if( !sessionStorage.getItem("token") || sessionStorage.getItem("token") == "" || sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null) {
+    return <> <ForbiddenPage /></>
+  } 
+
   return (
     <>
       <div className="row">
@@ -94,7 +71,6 @@ function AddProduct() {
           <div className="wrapper my-5">
             <form
               className="shadow-lg"
-              onSubmit={submitHandler}
               encType="multipart/form-data"
             >
               <h1 className="mb-4">New Product</h1>
@@ -169,21 +145,6 @@ function AddProduct() {
                 </select>
               </div>
 
-              {/* <div className="form-group">
-                <label htmlFor="user_field">User</label>
-                <select
-                  ref={user}
-                  className="form-control"
-                  id="user_field"                  
-                >
-                  {user.map((user) => (
-                    <option key={user.uid} value={user.uid}>
-                      {user.uemail}
-                    </option>
-                  ))}
-                </select>
-              </div> */}
-
               <div className="form-group">
                 <label htmlFor="rating_field">Image</label>
                 <input
@@ -196,24 +157,6 @@ function AddProduct() {
                   }}
                 />
               </div>
-
-              {/* <div className="form-group">
-                <label>Images</label>
-
-                <div className="custom-file">
-                  <input
-                    
-                    type="text"
-                    name="product_images"
-                    className="custom-file-input"
-                    id="customFile"
-                    
-                  />
-                  <label className="custom-file-label" htmlFor="customFile">
-                    Choose Images
-                  </label>
-                </div>
-              </div> */}
 
               <button
                 id="login_button"

@@ -6,6 +6,7 @@ import { faEdit, faRemove, faAdd } from "@fortawesome/free-solid-svg-icons";
 
 import Adminbar from "./Adminbar";
 import config from "../config/Config";
+import ForbiddenPage from "../../components/common/ForbiddenPage"
 const PATH = config().path;
 
 function OrderList() {
@@ -16,6 +17,10 @@ function OrderList() {
       setList(response.data);
     });
   }, []);
+
+  if( !sessionStorage.getItem("token") || (JSON.parse(sessionStorage.getItem("token")).user.role).charAt(JSON.parse(sessionStorage.getItem("token")).user.role.length - 1) != "1") {
+    return <> <ForbiddenPage /></>
+  }
 
   return (
     <>

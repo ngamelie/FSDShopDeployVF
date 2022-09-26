@@ -7,6 +7,7 @@ import StepCheckout from "../common/StepCheckout";
 
 import "../../asset/common/Style.css";
 import config from "../config/Config";
+import ForbiddenPage from "../../components/common/ForbiddenPage"
 const PATH = config().path + "/login/user";
 
 function Checkout() {
@@ -16,12 +17,18 @@ function Checkout() {
   const [msg, setMsg] = useState([]);
 
   useEffect(() => {
-    Axios.get(PATH + "/" + JSON.parse(sessionStorage.getItem("token")).user.uid,{headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
-      setAdd1(rs.data.add1)
-      setAdd2(rs.data.add2)
-      setPhone1(rs.data.phone1)
-    });
+    if(sessionStorage.getItem("token")) {
+      Axios.get(PATH + "/" + JSON.parse(sessionStorage.getItem("token")).user.uid,{headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
+        setAdd1(rs.data.add1)
+        setAdd2(rs.data.add2)
+        setPhone1(rs.data.phone1)
+      });
+    }
   }, []);
+
+  if( !sessionStorage.getItem("token") || sessionStorage.getItem("token") == "" || sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null) {
+    return <> <ForbiddenPage /></>
+  } 
 
   const updateUserInfo = ()=>{
     if (isVerified()) {
