@@ -5,6 +5,7 @@ import StarRatings from "react-star-ratings";
 import { Link } from "react-router-dom";
 import StepCheckout from "../common/StepCheckout";
 import Axios from "axios";
+import ForbiddenPage from "../../components/common/ForbiddenPage"
 import "../../asset/common/Style.css";
 
 function isVerified() {
@@ -38,6 +39,10 @@ const btn_payment=()=>{
 }
 
 function Checkout() {
+  if( !sessionStorage.getItem("token") || sessionStorage.getItem("token") == "" || sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null) {
+    return <> <ForbiddenPage /></>
+  } 
+  
   return (
     <>
       <div className="step">

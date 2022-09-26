@@ -42,7 +42,7 @@ function Registration() {
       rs = false
     }
 
-    if (fname.length < 4 || fname.length > 20) {
+    if (fname.length < 2 || fname.length > 20) {
       setMsg(msg => [...msg, "Check your name."])
       rs = false
     }
