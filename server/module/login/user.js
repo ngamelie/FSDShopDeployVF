@@ -26,6 +26,21 @@ router.post("/", (req, res) => {
     const obj = req.body   
     var bcry = ""
 
+    if(!obj){
+        res.send("Abnormal use of the system")
+        return
+    }
+
+    if(obj.uemail == "" || obj.uemail.length > 100){
+        res.send("Abnormal use of the system uemail")
+        return
+    }
+
+    if(obj.pword == "" || obj.pword.length > 100){
+        res.send("Abnormal use of the system pword")
+        return
+    }
+
     bcrypt.hash(obj.pword, 10, (err, hash) => {
         if (err) {
             console.log(err)

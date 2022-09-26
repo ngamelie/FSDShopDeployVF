@@ -28,9 +28,9 @@ function Checkout() {
       })
       setNumber(num)
       setPrice(totalPrice)
+      setItems(JSON.parse(localStorage.getItem("mycart")).items)
     }
-
-    setItems(JSON.parse(localStorage.getItem("mycart")).items)
+    
     if(sessionStorage.getItem("token")) {
       setUid(JSON.parse(sessionStorage.getItem("token")).user.uid)
     } 
