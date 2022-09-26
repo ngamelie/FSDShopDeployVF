@@ -261,4 +261,48 @@
 3. Need assistance / figure things out
 	- deployment training	
 
- =============================================================	
+=============================================================	
+	
+2022/09/23 (Ngan)
+1. Done / not done since last scrum:
+	- design and test admin page (done 50%) 
+	- test checkout (done) 
+	- test order (done) 
+	- test order_item (done) 
+	
+2. To do until next Scrum:
+	- design and test admin page
+	- test application
+	- fix bug
+	- deployment in heroku
+
+3. Need assistance / figure things out
+	- deployment training
+	
+=============================================================
+2022/09/25 (Ngan)
+1. Done / not done since last scrum:
+	- deployment in heroku (done 50%) 
+	- test application (done) 
+	- fix bug
+	
+2. To do until next Scrum:
+	- test application
+	- deployment 
+
+3. Need assistance / figure things out
+	- deployment training
+
+=============================================================
+2022/09/26 (Ngan)
+1. Done / not done since last scrum:
+	- deployment  
+	- test application
+	
+2. To do until next Scrum:
+	- test and fix application on heroku
+	- prepare presentation
+	- verify trellio	
+
+3. Need assistance / figure things out
+	- deployment training
