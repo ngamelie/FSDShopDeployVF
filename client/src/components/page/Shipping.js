@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from "react";
 import { Button, Card, Alert, Nav, variant, Form } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";remove
+import { Link } from "react-router-dom";
 import Axios from "axios";
 import StepCheckout from "../common/StepCheckout";
 
