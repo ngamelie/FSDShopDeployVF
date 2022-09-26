@@ -82,10 +82,10 @@ function Home() {
 
           {catergories.map((category) => (
             <div>
-              <Link to={`/product/category/${category.cid}`}>
+              <a href={`/product/category/${category.cid}`}>
                 {" "}
                 {category.title}{" "}
-              </Link>{" "}
+              </a>{" "}
               <br />
             </div>
           ))}
