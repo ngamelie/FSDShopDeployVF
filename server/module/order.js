@@ -18,7 +18,7 @@ router.use(express.json())
 router.use(cors())
 
 // -- get all------------------------------------------------ //
-router.get("/", async(req, res) => {
+router.get("/", config.isAdmin, async(req, res) => {
 
     try {
         const obj = await rep.getAll()

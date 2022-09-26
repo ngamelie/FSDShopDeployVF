@@ -62,8 +62,7 @@ router.get("/:id", config.isUser, async(req, res) => {
     
 })
 
-// -- get all Ngan added for testing with no security ---------- //
-router.get("/users", async(req, res) => {
+router.get("/users", config.isAdmin, async(req, res) => {
     try {
         const obj = await rep.getAll()
         res.send(obj)
