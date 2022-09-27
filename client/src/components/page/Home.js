@@ -59,6 +59,7 @@ function Home() {
         }
       );
     } else if (url.includes("product/category")) {
+      alert("go ")
       Axios.get(PATH + "/product/category/" + key).then((response) => {
         setProductList(response.data);
       });
@@ -82,7 +83,7 @@ function Home() {
 
           {catergories.map((category) => (
             <div>
-              <a className="btn" href={`/product/category/${category.cid}`}>
+              <a href={`/product/category/${category.cid}`}>
                 {" "}
                 {category.title}{" "}
               </a>{" "}
