@@ -20,6 +20,7 @@ import UserProductsList from "./components/login/ProductsList";
 import UserOrderList from "./components/login/OrderList";
 import AddProduct from "./components/admin/AddProduct";
 import UserList from "./components/admin/UserList";
+import ErrPage from "./components/common/ErrPage";
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
           <Route path="/admin/users" exact element={<UserList />} />
           <Route path="/product/admin/add" exact element={<AddProduct />} />
 
-
+          <Route path="*" exact element={<ErrPage />} />
         </Routes>
         <Footer />
       </Router>
