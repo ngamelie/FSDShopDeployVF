@@ -27,6 +27,7 @@ function Home() {
         setProductList(response.data);
       });
     } else if (url.includes("product/category")) {
+      alert("go ")
       Axios.get(PATH + "/product/category/" + key).then((response) => {
         setProductList(response.data);
       });
@@ -59,7 +60,6 @@ function Home() {
         }
       );
     } else if (url.includes("product/category")) {
-      alert("go ")
       Axios.get(PATH + "/product/category/" + key).then((response) => {
         setProductList(response.data);
       });
