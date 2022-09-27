@@ -51,6 +51,7 @@ function App() {
           <Route path="/product/admin/add" exact element={<AddProduct />} />
 
           <Route path="*" exact element={<ErrPage />} />
+          
         </Routes>
         <Footer />
       </Router>
