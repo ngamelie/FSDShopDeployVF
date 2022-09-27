@@ -65,7 +65,7 @@ function Login() {
     }
 
     if(pword == ""){
-      setMsg(msg => [...msg, "Check your password not empty and lengh between 6 to 20 characters please."])
+      setMsg(msg => [...msg, "Check your password not empty please."])
       rs = false
     }
     return rs
