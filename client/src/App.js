@@ -20,6 +20,7 @@ import UserProductsList from "./components/login/ProductsList";
 import UserOrderList from "./components/login/OrderList";
 import AddProduct from "./components/admin/AddProduct";
 import UserList from "./components/admin/UserList";
+import ErrPage from "./components/common/ErrPage";
 
 function App() {
   return (
@@ -31,13 +32,13 @@ function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path="/cart" exact element={<Cart />} />
           <Route path="/shipping" exact element={<Shipping />} />
-          <Route path="/order" exact element={<Order />} />
+          <Route path="/zeenorder" exact element={<Order />} />
           <Route path="/payment" exact element={<Payment />} />
           
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/product/:id" exact element={<Product />} />
           <Route path="/product/name/:name" exact element={<Home />} />
-          <Route path="/product/category/:cid" exact element={<Home />} />
+          <Route path="/zeen/product/category/:cid" exact element={<Home />} />
           <Route path="/shopping/cart" exact element={<Cart />} />
           <Route path="/user" exact element={<Userbar />} />
           <Route path="/login/products" exact element={<UserProductsList />} />
@@ -49,7 +50,7 @@ function App() {
           <Route path="/admin/users" exact element={<UserList />} />
           <Route path="/product/admin/add" exact element={<AddProduct />} />
 
-
+          <Route path="*" exact element={<ErrPage />} />
         </Routes>
         <Footer />
       </Router>

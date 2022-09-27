@@ -38,7 +38,7 @@ function Checkout() {
         add2: add2,
         phone1: phone1
       }, {headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
-        window.location.replace("/order")
+        window.location.replace("/zeenorder")
       });
     }
 
@@ -139,9 +139,9 @@ function Checkout() {
             <Alert> <li>{ i }</li> </Alert> 
 
             )) : null }
-            <Button id="shipping_btn" className="btn btn-block py-3" type="button" onClick={ updateUserInfo }>
+            <button id="shipping_btn" className="btn btn-block py-3" type="button" onClick={ updateUserInfo }>
               CONTINUE
-            </Button>
+            </button>
           </form>
         </div>
       </div>

@@ -9,6 +9,8 @@ import '../../asset/common/Style.css'
 import config from '../config/Config'
 
 const PATH = config().path
+// modify
+//////////
 
 function Admin() {
   if( !sessionStorage.getItem("token") || (JSON.parse(sessionStorage.getItem("token")).user.role).charAt(JSON.parse(sessionStorage.getItem("token")).user.role.length - 1) != "1") {
