@@ -19,7 +19,7 @@ function AddProduct() {
   const image = useRef("");
 
   // Zeen add parameters
-  const [cid, setCid] = useState(1);
+  const [cid, setCid] = useState(4);
   const [pname, setPname] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
