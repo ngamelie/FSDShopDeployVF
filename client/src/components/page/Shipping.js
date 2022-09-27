@@ -38,7 +38,7 @@ function Checkout() {
         add2: add2,
         phone1: phone1
       }, {headers:{token: sessionStorage.getItem("token")}}).then((rs) => {
-        window.location.replace("/order")
+        window.location.replace("/zeenorder")
       });
     }
 
