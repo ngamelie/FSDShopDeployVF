@@ -31,7 +31,7 @@ function Registration() {
 
   function isVerified() {
     var rs = true
-    setMsg("")
+    setMsg([])
     if (pword != pword1) {
       setMsg(msg => [...msg, "Confirm your password please."])
       rs = false
@@ -51,7 +51,6 @@ function Registration() {
       setMsg(msg => [...msg, "Check your pword lenth between 6 to 50."])
       rs = false
     }
-
 
     return rs
   }

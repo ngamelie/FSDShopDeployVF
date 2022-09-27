@@ -17,7 +17,7 @@ import {
   BrowserRouter,
   Navigate,
 } from "react-router-dom";
-import validator from "validator";
+import Validator from "validator";
 import Axios from "axios";
 
 import "../../asset/common/Style.css";
@@ -29,28 +29,47 @@ function Login() {
   const PATH = config().path;
   const [uemail, setUserEmail] = useState("");
   const [pword, setPassword] = useState("");
+  const [msg, setMsg] = useState("", [])
 
   const btn_login = () => {
-    Axios.post(PATH + "/login", {
-      uemail: uemail,
-      pword: pword,
-    }).then((rs) => {
-      const obj = rs.data;
-      if (obj.isAuth == 1) {
-        obj.isAuth = config().auth;
-        if(obj.user.role == 1) {
-          obj.user.role = config().admin
+    if(verify()){
+      Axios.post(PATH + "/login", {
+        uemail: uemail,
+        pword: pword,
+      }).then((rs) => {
+        const obj = rs.data;
+        if (obj.isAuth == 1) {
+          obj.isAuth = config().auth;
+          if(obj.user.role == 1) {
+            obj.user.role = config().admin
+          } else {
+            obj.user.role = config().user;
+          }
+          sessionStorage.setItem("token", JSON.stringify(obj));
+          //alert("Welcome.");
+          window.location.reload();
         } else {
-          obj.user.role = config().user;
+          alert("Incorrect username or password.");
         }
-        sessionStorage.setItem("token", JSON.stringify(obj));
-        //alert("Welcome.");
-        window.location.reload();
-      } else {
-        alert("Incorrect username or password.");
-      }
-    });
+      });
+    }
+    
   };
+
+  function verify() {
+    var rs = true
+    setMsg([])
+    if(!Validator.isEmail(uemail)) {
+      setMsg(msg => [...msg, "Check your email please."])
+      rs = false
+    }
+
+    if(pword == ""){
+      setMsg(msg => [...msg, "Check your password not empty please."])
+      rs = false
+    }
+    return rs
+  }
 
   const btn_logoff = () => {
     sessionStorage.setItem("token", null);
@@ -107,7 +126,7 @@ function Login() {
                     type="password"
                     name="pword"
                     size="20"
-                    maxLength="6"
+                    maxLength="12"
                     id="pword"
                     className="form-control"
                     placeholder="Password"
@@ -126,7 +145,14 @@ function Login() {
                 </button>
                 <div className="registerlink">
                 <Link to="/registration">New User?</Link>             
-                </div>                
+                </div>         
+                <div>
+                { (msg) ? msg.map( i => (    
+
+                <Alert> <li>{ i }</li> </Alert> 
+
+                )) : null }    
+                </div>   
               </form>
             </div>
           </div>
