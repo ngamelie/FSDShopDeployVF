@@ -79,7 +79,7 @@ function Home() {
     <div className="homecontainer row">
       <div className="col-2 sidebar">
         <div>         
-          <h5 className="subtitle">Categoties</h5>
+          <h5 className="subtitle">Categories</h5>
 
           {catergories.map((category) => (
             <div>
